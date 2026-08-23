@@ -2,6 +2,7 @@
 
 import React from 'react';
 import Link from 'next/link';
+import { dataManager } from '@/lib/dataManager';
 
 interface SubpageProps {
   params: Promise<{
@@ -11,28 +12,8 @@ interface SubpageProps {
 
 export default function ReportDetailPage({ params }: SubpageProps) {
   const resolvedParams = React.use(params);
-  const reportTitles: Record<string, { title: string; tag: string; date: string; sector: string }> = {
-    'rep-1': {
-      title: 'Audit Report on Health Services and Polio Vaccination Administrations in Rural Districts',
-      tag: 'Finance',
-      date: 'Jun 4, 2026',
-      sector: 'Social Welfare'
-    },
-    'rep-2': {
-      title: 'Defence Audit Report on Border Security Procurement and Modernization Schemes',
-      tag: 'Marketing',
-      date: 'Jul 15, 2026',
-      sector: 'Finance'
-    },
-    'rep-3': {
-      title: 'Performance Audit on Indian Railways Signaling Systems and Modernization Schemes',
-      tag: 'Technology',
-      date: 'Aug 30, 2026',
-      sector: 'Transport'
-    }
-  };
 
-  const reportDetails = reportTitles[resolvedParams.id] || {
+  const reportDetails = dataManager.getReports().find(r => r.id === resolvedParams.id) || {
     title: 'Audit Report on Government Operations and Public Accountability Frameworks',
     tag: 'Finance',
     date: 'Jun 4, 2026',

@@ -5,14 +5,18 @@ interface NamesDetailsCardProps {
   title: string;
   content: string;
   href?: string;
+  linkText?: string;
 }
 
-export default function NamesDetailsCard({ image, title, content, href }: NamesDetailsCardProps) {
+export default function NamesDetailsCard({ image, title, content, href, linkText }: NamesDetailsCardProps) {
   const CardWrapper = href ? 'a' : 'div';
+  const isExternal = href?.startsWith('http');
   
   return (
     <CardWrapper 
       href={href}
+      target={isExternal ? '_blank' : undefined}
+      rel={isExternal ? 'noopener noreferrer' : undefined}
       className={`bg-white border border-[#d7d7d7] rounded-xl overflow-hidden shadow-sm flex flex-col justify-between ${
         href ? 'cag-card-hover cursor-pointer block' : ''
       }`}
@@ -35,7 +39,7 @@ export default function NamesDetailsCard({ image, title, content, href }: NamesD
       {href && (
         <div className="px-5 pb-5 pt-2">
           <span className="text-xs font-semibold text-[#0a3d30] flex items-center gap-1">
-            Read details ➔
+            {linkText || 'Read details'} ➔
           </span>
         </div>
       )}

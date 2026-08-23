@@ -48,6 +48,8 @@ function StateOfficesPageContent() {
               key={office.id}
               title={office.name}
               content={`State: ${office.state}\nAddress: ${office.address}\nPhone: ${office.phone}\nEmail: ${office.email}`}
+              href={`https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(office.name + ' ' + office.address)}`}
+              linkText="View on Map"
             />
           ))}
         </div>

@@ -75,7 +75,7 @@ export interface ReportCardData {
 
 export const homeReportCards: ReportCardData[] = [
   {
-    id: 'rep-1',
+    id: 'home-rep-1',
     image: report1Pic,
     tag: 'Text',
     label: 'Civic',
@@ -84,7 +84,7 @@ export const homeReportCards: ReportCardData[] = [
     desc: 'Comprehensive review of urban infrastructure planning, fund utilization, and waste treatment plants across municipal corporations.'
   },
   {
-    id: 'rep-2',
+    id: 'home-rep-2',
     image: report2Pic,
     tag: 'Text',
     label: 'Tamil Nadu',
@@ -93,7 +93,7 @@ export const homeReportCards: ReportCardData[] = [
     desc: 'Assessment of measures taken to prevent marine pollution, coastal erosion, and implementation of CRZ notifications.'
   },
   {
-    id: 'rep-3',
+    id: 'home-rep-3',
     image: report3Pic,
     tag: 'Text',
     label: 'Andhra Pradesh',

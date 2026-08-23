@@ -99,6 +99,42 @@ Next.js App Router does not support spaces in folder names. Accessing URL paths 
      group: 'International Bodies' | 'Bilateral Relations' | 'Audit Engagements' | 'Training Institutes',
      logo: 'logo-filename.png',
      description: 'Detailed overview paragraph contents...'
-   }
-   ```
+    }
+    ```
 3. Add the route destination to the mega-dropdown list inside [Menu.tsx](file:///c:/Users/SEC/Desktop/new%20struc/src/Components/Menu/Menu.tsx) so visitors can select it from the navbar.
+
+---
+
+## 5. Updates & Enhancements Implemented (August 23, 2026)
+
+### A. Font Integration (Google Fonts Inter)
+- **Files**: [src/app/layout.tsx](file:///c:/Users/SEC/Downloads/new_cag_ui-version2/new_cag_ui-version2/src/app/layout.tsx), [src/app/globals.css](file:///c:/Users/SEC/Downloads/new_cag_ui-version2/new_cag_ui-version2/src/app/globals.css)
+- **Details**: 
+  - Integrated the dynamic Google font loader (`next/font/google`) in the main layout file.
+  - Linked the default Tailwind CSS font token `--font-sans` inside the `@theme` block in `globals.css` directly to the `Inter` font, ensuring a uniform visual aesthetic across all pages.
+
+### B. Next.js 15/16 Async Params Resolution
+- **Files**: [Global-relations/\[slug\]/page.tsx](file:///c:/Users/SEC/Downloads/new_cag_ui-version2/new_cag_ui-version2/src/app/(pages)/About/Index-Menu-About/Global-relations/[slug]/page.tsx), [Reports/\[id\]/page.tsx](file:///c:/Users/SEC/Downloads/new_cag_ui-version2/new_cag_ui-version2/src/app/(pages)/Reports/[id]/page.tsx)
+- **Details**: 
+  - Fixed Next.js runtime exceptions concerning synchronous param accesses.
+  - Unwrapped dynamic slug params asynchronously using the React hook `React.use(params)` before parsing details.
+
+### C. Persistent LocalStorage CMS Database (`dataManager.ts`)
+- **Files**: [dataManager.ts](file:///c:/Users/SEC/Downloads/new_cag_ui-version2/new_cag_ui-version2/src/lib/dataManager.ts), [api.ts](file:///c:/Users/SEC/Downloads/new_cag_ui-version2/new_cag_ui-version2/src/lib/api.ts)
+- **Details**:
+  - Built a centralized client-side data controller that operates over `localStorage` to manage CRUD operations (reports, office locations, news).
+  - Wired mock API fetches inside `api.ts` to retrieve presence statistics dynamically from this manager, making the frontend completely ready for integration with any custom administrator CMS control panel.
+
+### D. Responsive Details Layout & Unified Navigation
+- **Files**: [Reports/\[id\]/page.tsx](file:///c:/Users/SEC/Downloads/new_cag_ui-version2/new_cag_ui-version2/src/app/(pages)/Reports/[id]/page.tsx), [globals.css](file:///c:/Users/SEC/Downloads/new_cag_ui-version2/new_cag_ui-version2/src/app/globals.css)
+- **Details**:
+  - Cleaned up duplicate local breadcrumb rows in report details.
+  - Resolved details card squishing issues by widening container restrictions.
+  - Changed absolute hardcoded image heights/widths (`1312px` and `635px`) in the banner and sidebar cards to use percentage scaling (`100%`) with `object-fit: cover` to fit cleanly on narrow tablet and mobile viewports.
+
+### E. User Interface Interaction & Clicks
+- **Files**: [Header.tsx](file:///c:/Users/SEC/Downloads/new_cag_ui-version2/new_cag_ui-version2/src/Components/Header/Header.tsx), [LatestReports.tsx](file:///c:/Users/SEC/Downloads/new_cag_ui-version2/new_cag_ui-version2/src/app/(pages)/Home-page/Latest%20Audit%20Reports%20&%20Accounts/LatestReports.tsx), [WhoWeAre.tsx](file:///c:/Users/SEC/Downloads/new_cag_ui-version2/new_cag_ui-version2/src/app/(pages)/Home-page/Who%20We%20Are/WhoWeAre.tsx), [NewsEvents.tsx](file:///c:/Users/SEC/Downloads/new_cag_ui-version2/new_cag_ui-version2/src/app/(pages)/Home-page/News%20&%20Events/NewsEvents.tsx)
+- **Details**:
+  - Overrode Figma export hidden overlays (`opacity: 0`) in the navbar search block to make text inputs visible, and bound search execution triggers to both `Enter` keys and magnifying glass clicks.
+  - Upgraded latest audit carousel cards, directory grids, training institutes, constitutional core value cards, and trending/featured news headers to be fully clickable, wrapping them in Next.js router callbacks with hover scaling animations.
+  - Handled stopPropagation on nested links to prevent event bubbling.

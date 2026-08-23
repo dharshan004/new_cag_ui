@@ -2,8 +2,9 @@
 
 import React, { useState, useMemo, useEffect, Suspense } from 'react';
 import Link from 'next/link';
-import { useSearchParams } from 'next/navigation';
+import { useSearchParams, useRouter } from 'next/navigation';
 import FiltersSidemenu from '@/Reusable components/Side Menu/Filters_sidemenu/FiltersSidemenu';
+import { dataManager } from '@/lib/dataManager';
 
 interface ReportItem {
   id: string;
@@ -28,7 +29,10 @@ function ReportsPageContent() {
   const [selectedType, setSelectedType] = useState('All');
 
   const searchParams = useSearchParams();
+  const router = useRouter();
   const urlQuery = searchParams.get('query');
+
+  const [allReports, setAllReports] = useState<ReportItem[]>([]);
 
   useEffect(() => {
     if (urlQuery !== null) {
@@ -36,52 +40,9 @@ function ReportsPageContent() {
     }
   }, [urlQuery]);
 
-  const allReports: ReportItem[] = [
-    {
-      id: 'rep-1',
-      title: 'Audit Report on Health Services and Polio Vaccination Administrations in Rural Districts',
-      image: '/assets/4c1eaa81c93edbe02d6f7d5437565571dcec4b04.png',
-      tag: 'Finance',
-      date: 'Jun 4, 2026',
-      year: '2026',
-      sector: 'Social Welfare',
-      level: 'States',
-      type: 'Performance'
-    },
-    {
-      id: 'rep-2',
-      title: 'Defence Audit Report on Border Security Procurement and Modernization Schemes',
-      image: '/assets/269d11ffce72c4343f0fa24955e0dc48a33d8255.png',
-      tag: 'Marketing',
-      date: 'Jul 15, 2026',
-      year: '2026',
-      sector: 'Finance',
-      level: 'Union',
-      type: 'Compliance'
-    },
-    {
-      id: 'rep-3',
-      title: 'Performance Audit on Indian Railways Signaling Systems and Modernization Schemes',
-      image: '/assets/6574e2c9289333c9bdf86fe596a04b3f1c0238c3.png',
-      tag: 'Technology',
-      date: 'Aug 30, 2026',
-      year: '2026',
-      sector: 'Transport',
-      level: 'Union',
-      type: 'Performance'
-    },
-    {
-      id: 'rep-4',
-      title: 'Compliance Audit of Direct Tax Receipts and Corporate Assessments in Metro Regions',
-      image: '/assets/269d11ffce72c4343f0fa24955e0dc48a33d8255.png',
-      tag: 'Finance',
-      date: 'Jun 4, 2026',
-      year: '2025',
-      sector: 'Finance',
-      level: 'Union',
-      type: 'Compliance'
-    }
-  ];
+  useEffect(() => {
+    setAllReports(dataManager.getReports());
+  }, []);
 
   const clearAllFilters = () => {
     setSelectedLevel('All');
@@ -101,7 +62,7 @@ function ReportsPageContent() {
       if (selectedType !== 'All' && report.type !== selectedType) return false;
       return true;
     });
-  }, [segment, searchQuery, selectedYear, selectedLevel, selectedSector, selectedType]);
+  }, [allReports, segment, searchQuery, selectedYear, selectedLevel, selectedSector, selectedType]);
 
   return (
     <div className="reports-page" data-node-id="364:18601" data-name="Reports">
@@ -195,8 +156,13 @@ function ReportsPageContent() {
             </div>
           ) : (
             filteredReports.map((report) => (
-              <article key={report.id} className="report-card" data-node-id={report.id}>
-                <Link href={`/Reports/${report.id}`} className="report-card__banner">
+              <article 
+                key={report.id} 
+                className="report-card cursor-pointer transition-transform duration-200 hover:-translate-y-1 hover:shadow-md" 
+                data-node-id={report.id}
+                onClick={() => router.push(`/Reports/${report.id}`)}
+              >
+                <Link href={`/Reports/${report.id}`} className="report-card__banner" onClick={(e) => e.stopPropagation()}>
                   <img src={report.image} alt={report.title} className="report-card__photo" />
                 </Link>
                 <div className="report-card__tag-row">
@@ -205,11 +171,11 @@ function ReportsPageContent() {
                 </div>
                 <div className="report-card__body">
                   <h3 className="report-card__title">
-                    <Link href={`/Reports/${report.id}`} className="report-card__title-link">
+                    <Link href={`/Reports/${report.id}`} className="report-card__title-link" onClick={(e) => e.stopPropagation()}>
                       {report.title}
                     </Link>
                   </h3>
-                  <div className="report-card__cta">
+                  <div className="report-card__cta" onClick={(e) => e.stopPropagation()}>
                     <img src="/assets/e48d21d03bf5d85f98dd2bf1b2a8c03db29e05e0.svg" alt="" className="report-card__download-icon" />
                     <a href="#" className="report-card__label">Download Full Report</a>
                   </div>

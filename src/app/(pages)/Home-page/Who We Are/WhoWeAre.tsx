@@ -73,38 +73,38 @@ export default function WhoWeAre() {
         </div>
         <div className="who-we-are__details" data-node-id="356:17143">
           <div className="cag-cards" data-node-id="356:17144">
-            <div className="cag-card" data-node-id="356:17148">
+            <Link href="/About/About-Us/Constitutional-Provisions" className="cag-card cursor-pointer hover:shadow-lg hover:-translate-y-1 transition-all duration-200 block" data-node-id="356:17148">
               <div className="cag-card__icon">
                 <img src="/assets/6482d2822bc16f1e27c743aba1a1d5efe9974975.svg" alt="Constitutional Role icon" />
               </div>
               <div className="cag-card__divider"></div>
               <h3 className="cag-card__title">Constitutional Role</h3>
               <p className="cag-card__desc">Appointed under Article 148 of the Indian Constitution as guardian of public finances.</p>
-            </div>
-            <div className="cag-card" data-node-id="356:17152">
+            </Link>
+            <Link href="/About/About-Us/Our-Vision,-Mission-&-Core-Values" className="cag-card cursor-pointer hover:shadow-lg hover:-translate-y-1 transition-all duration-200 block" data-node-id="356:17152">
               <div className="cag-card__icon">
                 <img src="/assets/d296a6454ef5b1d6927204433862eee4294545d4.svg" alt="Our Mission icon" />
               </div>
               <div className="cag-card__divider"></div>
               <h3 className="cag-card__title">Our Mission</h3>
               <p className="cag-card__desc">To conduct comprehensive audits ensuring transparency, accountability, and efficiency.</p>
-            </div>
-            <div className="cag-card" data-node-id="356:17156">
+            </Link>
+            <Link href="/About/Index-Menu-About/Global-relations/Association%20with%20INTOSAI" className="cag-card cursor-pointer hover:shadow-lg hover:-translate-y-1 transition-all duration-200 block" data-node-id="356:17156">
               <div className="cag-card__icon">
                 <img src="/assets/d8fd77ee881f90073f924df1844719ec722ec892.svg" alt="Global Standards icon" />
               </div>
               <div className="cag-card__divider"></div>
               <h3 className="cag-card__title">Global Standards</h3>
               <p className="cag-card__desc">Following International Standards of Supreme Audit Institutions and best practices.</p>
-            </div>
-            <div className="cag-card" data-node-id="356:17161">
+            </Link>
+            <Link href="/About/About-Us/Cag-Of-India" className="cag-card cursor-pointer hover:shadow-lg hover:-translate-y-1 transition-all duration-200 block" data-node-id="356:17161">
               <div className="cag-card__icon">
                 <img src="/assets/c432a5b68483c46d01761b0880d7551cd6d812f2.svg" alt="Performance Audits icon" />
               </div>
               <div className="cag-card__divider"></div>
               <h3 className="cag-card__title">Performance Audits</h3>
               <p className="cag-card__desc">Beyond financial compliance, we audit programs for economy, efficiency, and effectiveness.</p>
-            </div>
+            </Link>
           </div>
           <Link href="/About/About-Us/Our-Vision,-Mission-&-Core-Values" className="btn btn--outline-dark" data-node-id="356:17162">
             Learn More

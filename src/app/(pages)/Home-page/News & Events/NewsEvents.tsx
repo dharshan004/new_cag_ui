@@ -1,9 +1,21 @@
 'use client';
 
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import Link from 'next/link';
+import { dataManager, NewsItem } from '@/lib/dataManager';
 
 export default function NewsEvents() {
   const [activeVideo, setActiveVideo] = useState<{ title: string; embedUrl: string } | null>(null);
+  const [activePopup, setActivePopup] = useState<{ title: string; text: string } | null>(null);
+
+  const [trendingNews, setTrendingNews] = useState<NewsItem[]>([]);
+  const [featuredNews, setFeaturedNews] = useState<NewsItem | null>(null);
+
+  useEffect(() => {
+    const all = dataManager.getNews();
+    setTrendingNews(all.filter(n => n.type === 'trending'));
+    setFeaturedNews(all.find(n => n.type === 'featured') || null);
+  }, []);
 
   const videosList = [
     {
@@ -74,44 +86,70 @@ export default function NewsEvents() {
         <div className="news-events__grid">
           <div className="trending-news">
             <h3 className="trending-news__heading">Trending News</h3>
-            <article className="trending-card">
-              <div className="trending-card__thumb" aria-hidden="true"></div>
-              <div className="trending-card__details">
-                <span className="trending-card__date">June 4, 2026</span>
-                <h4 className="trending-card__title">Release of Union Government Finance Accounts for 2025-26</h4>
-                <p className="trending-card__desc">Official publication of audited finance and appropriation accounts details for central ministries.</p>
-              </div>
-            </article>
-            <article className="trending-card">
-              <div className="trending-card__thumb" aria-hidden="true"></div>
-              <div className="trending-card__details">
-                <span className="trending-card__date">June 4, 2026</span>
-                <h4 className="trending-card__title">International Training Program on Environmental Audit Commences</h4>
-                <p className="trending-card__desc">iCISA hosts delegates from 32 countries for specialized training in auditing ecological policies.</p>
-              </div>
-            </article>
-            <article className="trending-card">
-              <div className="trending-card__thumb" aria-hidden="true"></div>
-              <div className="trending-card__details">
-                <span className="trending-card__date">June 4, 2026</span>
-                <h4 className="trending-card__title">Empanelment Open for Chartered Accountant Firms for FY 2026-27</h4>
-                <p className="trending-card__desc">Eligible CA firms can submit online applications for audit allocations in public sector units.</p>
-              </div>
-            </article>
+            
+            {trendingNews.map((news) => {
+              const isEmpanelment = news.id === 'news-3' || news.title.toLowerCase().includes('empanelment');
+              const isTraining = news.id === 'news-2' || news.title.toLowerCase().includes('training');
+              const isAccounts = news.id === 'news-1' || news.title.toLowerCase().includes('accounts');
+              
+              if (isEmpanelment) {
+                return (
+                  <div 
+                    key={news.id}
+                    className="trending-card cursor-pointer hover:bg-zinc-50 transition-colors"
+                    onClick={() => setActivePopup({
+                      title: news.title,
+                      text: news.desc
+                    })}
+                  >
+                    <div className="trending-card__thumb" aria-hidden="true"></div>
+                    <div className="trending-card__details">
+                      <span className="trending-card__date">{news.date}</span>
+                      <h4 className="trending-card__title">{news.title}</h4>
+                      <p className="trending-card__desc">{news.desc}</p>
+                    </div>
+                  </div>
+                );
+              }
+
+              const href = isAccounts 
+                ? '/Reports/accounts' 
+                : isTraining 
+                  ? '/Our-Presence/Index-Menu/Traning-Institutes?filter=iced' 
+                  : '/Reports';
+
+              return (
+                <Link 
+                  key={news.id}
+                  href={href} 
+                  className="trending-card cursor-pointer hover:bg-zinc-50 transition-colors block"
+                >
+                  <div className="trending-card__thumb" aria-hidden="true"></div>
+                  <div className="trending-card__details">
+                    <span className="trending-card__date">{news.date}</span>
+                    <h4 className="trending-card__title">{news.title}</h4>
+                    <p className="trending-card__desc">{news.desc}</p>
+                  </div>
+                </Link>
+              );
+            })}
           </div>
-          <article className="featured-news">
-            <img 
-              src="/assets/e2c5a3b888a0623426c634ce2f2bee016b8fb5ab.png" 
-              alt="Indian Railways train departing a station" 
-              className="featured-news__photo" 
-            />
-            <div className="featured-news__overlay"></div>
-            <span className="featured-news__tag">News</span>
-            <div className="featured-news__text">
-              <span className="featured-news__date">03 June 2026</span>
-              <h3 className="featured-news__headline">CAG tables performance audit report on Indian Railways modernization schemes</h3>
-            </div>
-          </article>
+
+          {featuredNews && (
+            <Link href="/Reports/rep-3" className="featured-news cursor-pointer block hover:scale-[1.01] transition-transform">
+              <img 
+                src={featuredNews.image || "/assets/e2c5a3b888a0623426c634ce2f2bee016b8fb5ab.png"} 
+                alt={featuredNews.title} 
+                className="featured-news__photo" 
+              />
+              <div className="featured-news__overlay"></div>
+              <span className="featured-news__tag">{featuredNews.tag || 'News'}</span>
+              <div className="featured-news__text">
+                <span className="featured-news__date">{featuredNews.date}</span>
+                <h3 className="featured-news__headline">{featuredNews.title}</h3>
+              </div>
+            </Link>
+          )}
         </div>
       </section>
 
@@ -136,6 +174,26 @@ export default function NewsEvents() {
                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                 allowFullScreen
               />
+            </div>
+          </div>
+        </div>
+      )}
+
+      {/* Info Popup Modal */}
+      {activePopup && (
+        <div className="fixed inset-0 bg-black/80 flex items-center justify-center z-50 p-4">
+          <div className="bg-white rounded-xl overflow-hidden max-w-xl w-full shadow-2xl relative">
+            <div className="p-4 border-b border-[#e6e6e6] flex justify-between items-center bg-[#0a3d30]">
+              <h3 className="font-bold text-white text-sm">{activePopup.title}</h3>
+              <button 
+                onClick={() => setActivePopup(null)}
+                className="text-white hover:text-zinc-300 font-bold text-sm cursor-pointer"
+              >
+                ✕ Close
+              </button>
+            </div>
+            <div className="p-6 text-sm text-zinc-700 leading-relaxed whitespace-pre-line bg-[#fbfbfb]">
+              {activePopup.text}
             </div>
           </div>
         </div>

@@ -1,15 +1,20 @@
 'use client';
 
-import React, { useState, useRef } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import Link from 'next/link';
-
-import { homeReportCards, ReportCardData } from '@/config/site';
+import { useRouter } from 'next/navigation';
+import { dataManager } from '@/lib/dataManager';
 
 export default function LatestReports() {
   const [carouselIndex, setCarouselIndex] = useState(0);
   const carouselRef = useRef<HTMLDivElement>(null);
+  const router = useRouter();
 
-  const reportCards = homeReportCards;
+  const [reportCards, setReportCards] = useState<any[]>([]);
+
+  useEffect(() => {
+    setReportCards(dataManager.getReports().filter(r => r.isFeatured));
+  }, []);
 
   const scrollCarousel = (direction: 'next' | 'prev') => {
     let nextIndex = carouselIndex;
@@ -46,7 +51,12 @@ export default function LatestReports() {
 
         <div className="reports__cards flex overflow-x-auto gap-6 scroll-smooth" ref={carouselRef} data-node-id="356:17054">
           {reportCards.map((report) => (
-            <article key={report.id} className="report-card min-w-[340px] md:min-w-[400px] shrink-0" data-node-id={report.id}>
+            <article 
+              key={report.id} 
+              className="report-card min-w-[340px] md:min-w-[400px] shrink-0 cursor-pointer transition-transform duration-200 hover:-translate-y-1 hover:shadow-md" 
+              data-node-id={report.id}
+              onClick={() => router.push(`/Reports/${report.id}`)}
+            >
               <div className="report-card__banner" data-node-id="I356:17059;907:255">
                 <img src={typeof report.image === 'string' ? report.image : report.image.src} alt={report.title} className="report-card__photo" />
                 <span className="report-card__tag" data-node-id="I356:17059;907:256">{report.tag}</span>
@@ -58,7 +68,7 @@ export default function LatestReports() {
                   <span className="report-card__date" data-node-id="I356:17059;1217:10557">{report.date}</span>
                 </div>
                 <h3 className="report-card__title" data-node-id="I356:17059;906:234">
-                  <Link href={`/Reports/${report.id}`}>{report.title}</Link>
+                  <Link href={`/Reports/${report.id}`} onClick={(e) => e.stopPropagation()}>{report.title}</Link>
                 </h3>
                 <p className="report-card__desc" data-node-id="I356:17059;906:235">{report.desc}</p>
               </div>
