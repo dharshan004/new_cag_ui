@@ -40,7 +40,7 @@ export default function Banner() {
             <Link href="/Reports" className="btn btn--white" data-node-id="356:17265">
               Explore Reports
             </Link>
-            <Link href="/About/About Us/Cag Of India" className="btn btn--outline-white" data-node-id="356:17266">
+            <Link href="/About/About-Us/Cag-Of-India" className="btn btn--outline-white" data-node-id="356:17266">
               Learn about CAG
             </Link>
           </div>

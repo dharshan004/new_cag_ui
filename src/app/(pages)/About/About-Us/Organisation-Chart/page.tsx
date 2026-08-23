@@ -3,7 +3,7 @@ import AboutLayout from '@/app/(pages)/About/AboutLayout';
 
 export default function OrganisationChartPage() {
   return (
-    <AboutLayout title="Organisation Chart">
+    <AboutLayout title="Organisation-Chart">
       <p>
         The Comptroller and Auditor General of India leads the department. The organization functions through a hierarchy of senior executives overseeing audit fields:
       </p>

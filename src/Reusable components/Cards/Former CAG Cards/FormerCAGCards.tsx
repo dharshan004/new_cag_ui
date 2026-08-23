@@ -21,7 +21,7 @@ export default function FormerCAGCards() {
     <div className="space-y-6">
       <div className="text-center">
         <h3 className="text-2xl font-bold text-cag-dark">Legacy of Leadership</h3>
-        <p className="text-sm text-zinc-500 mt-1">Former Comptroller and Auditors General of India</p>
+        <p className="text-sm text-zinc-500 mt-1">Former-Comptroller-and-Auditors-General of India</p>
       </div>
 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">

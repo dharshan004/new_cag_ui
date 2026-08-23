@@ -4,43 +4,66 @@ import React from 'react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 
+interface SidebarGroup {
+  heading: string;
+  links: { name: string; href: string }[];
+}
+
 export default function AboutusSidemenu() {
   const pathname = usePathname();
-  
-  const subcategories = [
-    { name: 'CAG of India Profile', slug: 'cag-profile' },
-    { name: 'Vision, Mission & Values', slug: 'vision-mission' },
-    { name: 'Organisation Chart', slug: 'organisation-chart' },
-    { name: 'History of IAAD', slug: 'history' },
-    { name: 'Former CAGs Gallery', slug: 'former-cags' },
-    { name: 'Audit Advisory Board', slug: 'audit-advisory-board' },
+
+  const groups: SidebarGroup[] = [
+    {
+      heading: 'Who We Are',
+      links: [
+        { name: 'CAG of India', href: '/About/About-Us/Cag-Of-India' },
+        { name: 'Our Vision, Mission and Core Values', href: '/About/About-Us/Our-Vision,-Mission-&-Core-Values' },
+        { name: 'Organisation-Chart', href: '/About/About-Us/Organisation-Chart' }
+      ]
+    },
+    {
+      heading: 'Leadership & Legacy',
+      links: [
+        { name: 'Former CAGs', href: '/About/About-Us/Former-Comptroller-and-Auditors-General' },
+        { name: 'History of IAAD', href: '/About/About-Us/History-of-Indian-Audit-ans-Accounts-Department' },
+        { name: 'Audit-Advisory-Board', href: '/About/About-Us/Audit-Advisory-Board' }
+      ]
+    },
+    {
+      heading: 'Governance-&-Mandate',
+      links: [
+        { name: 'Constitutional-Provisions', href: '/About/About-Us/Constitutional-Provisions' },
+        { name: 'Duties-&-Powers-Act', href: '/About/About-Us/Duties-&-Powers-Act' },
+        { name: 'Audit-Regulation', href: '/About/About-Us/Audit-Regulation' }
+      ]
+    }
   ];
 
   return (
-    <div className="bg-white border border-[#d7d7d7] rounded-xl p-5 shadow-sm space-y-4">
-      <h3 className="text-sm font-bold text-[#2a2a2a] border-b border-[#e6e6e6] pb-2">
-        About Us Section
-      </h3>
-      <nav className="flex flex-col space-y-1">
-        {subcategories.map((sub) => {
-          const href = `/About/About%20Us/${encodeURIComponent(sub.name)}`;
-          // Support checking active state
-          const isActive = pathname.toLowerCase().includes(sub.slug) || pathname.toLowerCase().includes(encodeURIComponent(sub.name).toLowerCase());
-          return (
-            <Link
-              key={sub.slug}
-              href={href}
-              className={`text-xs px-3 py-2 rounded-lg transition-colors text-left ${
-                isActive
-                  ? 'bg-[#0a3d30] text-white font-semibold'
-                  : 'hover:bg-[#eee] text-zinc-700'
-              }`}
-            >
-              {sub.name}
-            </Link>
-          );
-        })}
-      </nav>
+    <div className="about-sidebar" data-name="Side Menu">
+      <h2 className="about-sidebar__heading text-left">About Us</h2>
+      <div className="about-sidebar__divider"></div>
+      <div className="about-sidebar__menus" data-name="Menus">
+        {groups.map((grp, idx) => (
+          <div key={idx} data-name={grp.heading}>
+            <p className="about-sidebar__group-heading text-left">{grp.heading}</p>
+            <div className="about-sidebar__sublist" data-name="Sub Menus">
+              {grp.links.map((link) => {
+                const isActive = decodeURIComponent(pathname).toLowerCase() === link.href.toLowerCase();
+                return (
+                  <Link 
+                    key={link.href}
+                    href={link.href}
+                    className={`about-sidebar__link ${isActive ? 'about-sidebar__link--active' : ''}`}
+                  >
+                    {link.name}
+                  </Link>
+                );
+              })}
+            </div>
+          </div>
+        ))}
+      </div>
     </div>
   );
 }

@@ -4,7 +4,7 @@ import FormerCAGCards from '@/Reusable components/Cards/Former CAG Cards/FormerC
 
 export default function FormerCAGPage() {
   return (
-    <AboutLayout title="Former Comptroller and Auditors General">
+    <AboutLayout title="Former-Comptroller-and-Auditors-General">
       <FormerCAGCards />
     </AboutLayout>
   );

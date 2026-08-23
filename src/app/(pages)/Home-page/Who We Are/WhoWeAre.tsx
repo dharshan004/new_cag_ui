@@ -106,7 +106,7 @@ export default function WhoWeAre() {
               <p className="cag-card__desc">Beyond financial compliance, we audit programs for economy, efficiency, and effectiveness.</p>
             </div>
           </div>
-          <Link href="/About/About Us/Our Vision, Mission & Core Values" className="btn btn--outline-dark" data-node-id="356:17162">
+          <Link href="/About/About-Us/Our-Vision,-Mission-&-Core-Values" className="btn btn--outline-dark" data-node-id="356:17162">
             Learn More
           </Link>
         </div>
