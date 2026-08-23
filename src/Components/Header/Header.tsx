@@ -77,7 +77,7 @@ export default function Header() {
             {isHindi ? 'कर्मचारी पोर्टल' : 'Employee Portal'}
           </button>
           <Link href="/#news-events-heading" className="utility-link">{isHindi ? 'समाचार एवं घटनाएँ' : 'News & Events'}</Link>
-          <Link href="/About/Index-Menu-About/Global-relations/International Relations Wing" className="utility-link">{isHindi ? 'संपर्क' : 'Contact'}</Link>
+          <Link href="/About/Index-Menu-About/Global-relations/International%20Relations%20Wing" className="utility-link">{isHindi ? 'संपर्क' : 'Contact'}</Link>
         </nav>
         <div className="accessibility">
           <button 

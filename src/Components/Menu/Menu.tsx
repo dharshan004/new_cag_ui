@@ -98,9 +98,9 @@ export default function Menu({ mobileMenuOpen, language }: { mobileMenuOpen: boo
               <div className="grm-column">
                 <p className="grm-column__heading text-left">{isHindi ? 'अंतर्राष्ट्रीय निकाय' : 'International Bodies'}</p>
                 <div className="grm-link-group">
-                  <Link href="/About/Index-Menu-About/Global-relations/Association with INTOSAI" className="grm-link-box" onClick={() => setActiveMega(null)}>{isHindi ? 'INTOSAI के साथ जुड़ाव' : 'Association with INTOSAI'}</Link>
-                  <Link href="/About/Index-Menu-About/Global-relations/Association with ASOSAI" className="grm-link-box" onClick={() => setActiveMega(null)}>{isHindi ? 'ASOSAI के साथ जुड़ाव' : 'Association with ASOSAI'}</Link>
-                  <Link href="/About/Index-Menu-About/Global-relations/Multilateral Engagement" className="grm-link-box" onClick={() => setActiveMega(null)}>{isHindi ? 'बहुपक्षीय सहभागिता' : 'Multilateral Engagement'}</Link>
+                  <Link href="/About/Index-Menu-About/Global-relations/Association%20with%20INTOSAI" className="grm-link-box" onClick={() => setActiveMega(null)}>{isHindi ? 'INTOSAI के साथ जुड़ाव' : 'Association with INTOSAI'}</Link>
+                  <Link href="/About/Index-Menu-About/Global-relations/Association%20with%20ASOSAI" className="grm-link-box" onClick={() => setActiveMega(null)}>{isHindi ? 'ASOSAI के साथ जुड़ाव' : 'Association with ASOSAI'}</Link>
+                  <Link href="/About/Index-Menu-About/Global-relations/Multilateral%20Engagement" className="grm-link-box" onClick={() => setActiveMega(null)}>{isHindi ? 'बहुपक्षीय सहभागिता' : 'Multilateral Engagement'}</Link>
                 </div>
               </div>
               <div className="grm-column">
@@ -111,7 +111,7 @@ export default function Menu({ mobileMenuOpen, language }: { mobileMenuOpen: boo
                       ? 'SAI भारत की द्विपक्षीय साझेदारी और अन्य देशों के लेखा परीक्षा संस्थानों के साथ अंतर्राष्ट्रीय सहयोग का पता लगाएं' 
                       : 'Explore SAI India\'s bilateral partnerships and international cooperation with audit institutions across countries'}
                   </p>
-                  <Link href="/About/Index-Menu-About/Global-relations/Bilateral Relations" className="grm-desc-box__cta text-left" onClick={() => setActiveMega(null)}>
+                  <Link href="/About/Index-Menu-About/Global-relations/Bilateral%20Relations" className="grm-desc-box__cta text-left" onClick={() => setActiveMega(null)}>
                     {isHindi ? 'सभी देश देखें' : 'View all countries'} &rarr;
                   </Link>
                 </div>
@@ -119,10 +119,10 @@ export default function Menu({ mobileMenuOpen, language }: { mobileMenuOpen: boo
               <div className="grm-column">
                 <p className="grm-column__heading text-left">{isHindi ? 'लेखा परीक्षा सहभागिता' : 'Audit Engagements'}</p>
                 <div className="grm-link-group">
-                  <Link href="/About/Index-Menu-About/Global-relations/UN Panel of External Auditors" className="grm-link-box" onClick={() => setActiveMega(null)}>{isHindi ? 'बाह्य लेखा परीक्षकों का संयुक्त राष्ट्र पैनल' : 'UN Panel of External Auditors'}</Link>
-                  <Link href="/About/Index-Menu-About/Global-relations/Present International Audits" className="grm-link-box" onClick={() => setActiveMega(null)}>{isHindi ? 'वर्तमान अंतर्राष्ट्रीय लेखा परीक्षा' : 'Present International Audits'}</Link>
-                  <Link href="/About/Index-Menu-About/Global-relations/Past International Audits" className="grm-link-box" onClick={() => setActiveMega(null)}>{isHindi ? 'विगत अंतर्राष्ट्रीय लेखा परीक्षा' : 'Past International Audits'}</Link>
-                  <Link href="/About/Index-Menu-About/Global-relations/Overseas Audit Offices" className="grm-link-box" onClick={() => setActiveMega(null)}>{isHindi ? 'विदेशी लेखा परीक्षा कार्यालय' : 'Overseas Audit Offices'}</Link>
+                  <Link href="/About/Index-Menu-About/Global-relations/UN%20Panel%20of%20External%20Auditors" className="grm-link-box" onClick={() => setActiveMega(null)}>{isHindi ? 'बाह्य लेखा परीक्षकों का संयुक्त राष्ट्र पैनल' : 'UN Panel of External Auditors'}</Link>
+                  <Link href="/About/Index-Menu-About/Global-relations/Present%20International%20Audits" className="grm-link-box" onClick={() => setActiveMega(null)}>{isHindi ? 'वर्तमान अंतर्राष्ट्रीय लेखा परीक्षा' : 'Present International Audits'}</Link>
+                  <Link href="/About/Index-Menu-About/Global-relations/Past%20International%20Audits" className="grm-link-box" onClick={() => setActiveMega(null)}>{isHindi ? 'विगत अंतर्राष्ट्रीय लेखा परीक्षा' : 'Past International Audits'}</Link>
+                  <Link href="/About/Index-Menu-About/Global-relations/Overseas%20Audit%20Offices" className="grm-link-box" onClick={() => setActiveMega(null)}>{isHindi ? 'विदेशी लेखा परीक्षा कार्यालय' : 'Overseas Audit Offices'}</Link>
                 </div>
               </div>
               <div className="grm-column">
@@ -142,7 +142,7 @@ export default function Menu({ mobileMenuOpen, language }: { mobileMenuOpen: boo
                       ? 'वैश्विक साझेदारी और पहलों पर जानकारी के लिए अंतर्राष्ट्रीय संबंध विंग से जुड़ें' 
                       : 'Connect with the International Relations Wing for information on global partnerships and initiatives'}
                   </p>
-                  <Link href="/About/Index-Menu-About/Global-relations/International Relations Wing" className="grm-desc-box__cta text-left" onClick={() => setActiveMega(null)}>
+                  <Link href="/About/Index-Menu-About/Global-relations/International%20Relations%20Wing" className="grm-desc-box__cta text-left" onClick={() => setActiveMega(null)}>
                     {isHindi ? 'अंतर्राष्ट्रीय संबंध विंग से संपर्क करें' : 'Contact IR Wing'} &rarr;
                   </Link>
                 </div>

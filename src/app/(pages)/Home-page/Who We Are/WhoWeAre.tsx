@@ -173,7 +173,7 @@ export default function WhoWeAre() {
             <img src="/assets/eebeff0eb4acf32e821992e39ae1a96ca7d9bf95.svg" alt="" className="stat__icon" />
             <p className="stat__number" data-node-id="356:17173">150+</p>
             <p className="stat__caption" data-node-id="356:17175">
-              {isHindi ? 'उत्कृष्टता के वर्ष\nस्थापना 1858' : 'Years of excellence\nFounded in 1858'}
+              {isHindi ? <>उत्कृष्टता के वर्ष<br />स्थापना 1858</> : <>Years of excellence<br />Founded in 1858</>}
             </p>
           </div>
           <div className="stat" data-node-id="356:17176">
@@ -187,7 +187,7 @@ export default function WhoWeAre() {
             <img src="/assets/966e437fa2336aee29c529b12cc4d949d9cfae00.svg" alt="" className="stat__icon" />
             <p className="stat__number" data-node-id="356:17190">28+</p>
             <p className="stat__caption" data-node-id="356:17192">
-              {isHindi ? 'राज्य लेखा परीक्षा कार्यालय\nअखिल भारतीय उपस्थिति' : 'State audit offices \nPan-India presence'}
+              {isHindi ? <>राज्य लेखा परीक्षा कार्यालय<br />अखिल भारतीय उपस्थिति</> : <>State audit offices<br />Pan-India presence</>}
             </p>
           </div>
           <div className="stat" data-node-id="356:17193">
