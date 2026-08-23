@@ -25,7 +25,7 @@ export interface NewsItem {
   image?: string;
 }
 
-// Default initial data matching site contents
+// Default initial data matching site contents (9 featured reports in total)
 const DEFAULT_REPORTS: ReportItem[] = [
   {
     id: 'rep-1',
@@ -38,7 +38,8 @@ const DEFAULT_REPORTS: ReportItem[] = [
     level: 'States',
     type: 'Performance',
     label: 'Health Audit',
-    desc: 'Review of vaccine distribution logistics, primary health center infrastructure, and public health fund implementation.'
+    desc: 'Review of vaccine distribution logistics, primary health center infrastructure, and public health fund implementation.',
+    isFeatured: true
   },
   {
     id: 'rep-2',
@@ -51,7 +52,8 @@ const DEFAULT_REPORTS: ReportItem[] = [
     level: 'Union',
     type: 'Compliance',
     label: 'Defence Audit',
-    desc: 'Detailed compliance assessment of security hardware acquisitions, border fence structures, and modern systems procurement.'
+    desc: 'Detailed compliance assessment of security hardware acquisitions, border fence structures, and modern systems procurement.',
+    isFeatured: true
   },
   {
     id: 'rep-3',
@@ -64,7 +66,8 @@ const DEFAULT_REPORTS: ReportItem[] = [
     level: 'Union',
     type: 'Performance',
     label: 'Railways Audit',
-    desc: 'Signaling upgrade projects review evaluating budget allocations, installation timelines, and system integration reliability checks.'
+    desc: 'Signaling upgrade projects review evaluating budget allocations, installation timelines, and system integration reliability checks.',
+    isFeatured: true
   },
   {
     id: 'rep-4',
@@ -77,7 +80,36 @@ const DEFAULT_REPORTS: ReportItem[] = [
     level: 'Union',
     type: 'Compliance',
     label: 'Direct Tax Audit',
-    desc: 'Audit evaluating compliance of corporate tax exemptions, assessment timelines, and direct receipt accounts clearance.'
+    desc: 'Audit evaluating compliance of corporate tax exemptions, assessment timelines, and direct receipt accounts clearance.',
+    isFeatured: true
+  },
+  {
+    id: 'rep-5',
+    title: 'Audit Report on Municipal Corporation Revenue and Property Tax Assessments',
+    image: '/assets/12e6d254adf33bbd46537f45eb8f9ecd50a15e55.png',
+    tag: 'Finance',
+    date: 'Sep 10, 2026',
+    year: '2026',
+    sector: 'Social Welfare',
+    level: 'States',
+    type: 'Compliance',
+    label: 'Revenue Audit',
+    desc: 'Review of local property assessments, tax collectors efficiency, and municipal development fund distributions.',
+    isFeatured: true
+  },
+  {
+    id: 'rep-6',
+    title: 'Performance Evaluation of Information Technology Systems in Central Excise Department',
+    image: '/assets/cc8a1a5614f48c98f397dcafcf38e8f22843dc2a.png',
+    tag: 'Technology',
+    date: 'Oct 05, 2026',
+    year: '2026',
+    sector: 'Transport',
+    level: 'Union',
+    type: 'Performance',
+    label: 'Excise IT Audit',
+    desc: 'Audit reviewing custom software deployments, server security frameworks, and processing performance benchmarks.',
+    isFeatured: true
   },
   // Home page featured reports
   {
@@ -148,6 +180,39 @@ const DEFAULT_OFFICES: Office[] = [
     type: 'state'
   },
   {
+    id: 'c-def',
+    state: 'Delhi',
+    name: 'Office of the Director General of Audit (Defence Services), New Delhi',
+    address: 'L-II Block, Brassey Avenue, New Delhi - 110001',
+    phone: '+91-11-23012290',
+    email: 'dgadefenceserv@cag.gov.in',
+    lat: 28.6143,
+    lng: 77.2014,
+    type: 'central'
+  },
+  {
+    id: 'c-rail',
+    state: 'Delhi',
+    name: 'Office of the Director General of Audit (Railways), New Delhi',
+    address: 'Rail Bhavan, Raisina Road, New Delhi - 110001',
+    phone: '+91-11-23389012',
+    email: 'dgarailways@cag.gov.in',
+    lat: 28.6163,
+    lng: 77.2114,
+    type: 'central'
+  },
+  {
+    id: 'c-over',
+    state: 'Overseas',
+    name: 'Office of the Director General of Audit, London (Overseas Office)',
+    address: 'High Commission of India, India House, Aldwych, London WC2B 4NA',
+    phone: '+44-20-78368484',
+    email: 'caglondon@cag.gov.in',
+    lat: 51.5132,
+    lng: -0.1195,
+    type: 'central'
+  },
+  {
     id: 'c-1',
     state: 'Delhi',
     name: 'Director General of Audit (Post & Telecommunications)',
@@ -159,8 +224,30 @@ const DEFAULT_OFFICES: Office[] = [
     type: 'central'
   },
   {
+    id: 'tr-reg-1',
+    state: 'Karnataka',
+    name: 'Regional Training Institute (RTI), Bengaluru',
+    address: 'Basava Samithi Building, Bengaluru, Karnataka - 560001',
+    phone: '+91-80-22261000',
+    email: 'rtibangalore@cag.gov.in',
+    lat: 12.9716,
+    lng: 77.5946,
+    type: 'training'
+  },
+  {
+    id: 'tr-reg-2',
+    state: 'Maharashtra',
+    name: 'Regional Training Centre (RTC), Mumbai',
+    address: 'Pratishtha Bhavan, Marine Lines, Mumbai - 400020',
+    phone: '+91-22-22039680',
+    email: 'rtcmumbai@cag.gov.in',
+    lat: 18.9440,
+    lng: 72.8258,
+    type: 'training'
+  },
+  {
     id: 'tr-1',
-    state: 'Haryana',
+    state: 'Rajasthan',
     name: 'International Centre for Environment Audit and Sustainable Development (iCED)',
     address: 'Kant Kalwar, RIICO Industrial Area, NH-11C, Jaipur, Rajasthan - 303002',
     phone: '+91-141-2772000',
@@ -178,6 +265,28 @@ const DEFAULT_OFFICES: Office[] = [
     email: 'icisa@cag.gov.in',
     lat: 28.5355,
     lng: 77.3910,
+    type: 'training'
+  },
+  {
+    id: 'tr-naaa',
+    state: 'Shimla',
+    name: 'National Academy of Audit & Accounts (NAAA), Shimla',
+    address: 'Chaura Maidan, Shimla, Himachal Pradesh - 171004',
+    phone: '+91-177-2803153',
+    email: 'naaashimla@cag.gov.in',
+    lat: 31.1048,
+    lng: 77.1734,
+    type: 'training'
+  },
+  {
+    id: 'tr-ical',
+    state: 'Kerala',
+    name: 'International Centre for Audit of Local Governance (iCAL), Kozhikode',
+    address: 'Kozhikode, Kerala - 673001',
+    phone: '+91-495-2371000',
+    email: 'ical@cag.gov.in',
+    lat: 11.2588,
+    lng: 75.7804,
     type: 'training'
   }
 ];
@@ -216,6 +325,17 @@ const DEFAULT_NEWS: NewsItem[] = [
 ];
 
 export const dataManager = {
+  getLanguage(): 'English' | 'हिन्दी' {
+    if (typeof window === 'undefined') return 'English';
+    return (localStorage.getItem('cag_language') as any) || 'English';
+  },
+
+  setLanguage(lang: 'English' | 'हिन्दी') {
+    if (typeof window === 'undefined') return;
+    localStorage.setItem('cag_language', lang);
+    window.dispatchEvent(new Event('languageChange'));
+  },
+
   getReports(): ReportItem[] {
     if (typeof window === 'undefined') return DEFAULT_REPORTS;
     try {
@@ -226,7 +346,7 @@ export const dataManager = {
       }
       const parsed = JSON.parse(stored);
       const featuredCount = Array.isArray(parsed) ? parsed.filter((r: any) => r.isFeatured).length : 0;
-      if (!Array.isArray(parsed) || parsed.length === 0 || !parsed.some(r => r.label) || featuredCount > 3) {
+      if (!Array.isArray(parsed) || parsed.length === 0 || !parsed.some(r => r.label) || featuredCount !== 9) {
         localStorage.setItem('cag_reports', JSON.stringify(DEFAULT_REPORTS));
         return DEFAULT_REPORTS;
       }
@@ -265,7 +385,7 @@ export const dataManager = {
         return DEFAULT_OFFICES;
       }
       const parsed = JSON.parse(stored);
-      if (!Array.isArray(parsed) || parsed.length === 0) {
+      if (!Array.isArray(parsed) || parsed.length !== 12) {
         localStorage.setItem('cag_offices', JSON.stringify(DEFAULT_OFFICES));
         return DEFAULT_OFFICES;
       }

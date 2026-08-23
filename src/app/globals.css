@@ -560,15 +560,17 @@ button {
 .reports__cards {
   display: flex;
   gap: 24px;
-  flex-wrap: wrap;
+  flex-wrap: nowrap;
+  overflow: hidden;
 }
 
-.report-card {
+.reports__cards .report-card {
+  width: calc((100% - 48px) / 3);
+  min-width: calc((100% - 48px) / 3);
+  flex-shrink: 0;
+  flex-grow: 0;
   background: #fff;
   border-radius: 8px;
-  width: 394px;
-  max-width: 100%;
-  flex: 1 1 300px;
   padding-bottom: 24px;
   display: flex;
   flex-direction: column;
@@ -4128,19 +4130,17 @@ button {
   color: #ffffff !important;
 }
 
+.high-contrast,
 .high-contrast body,
+.high-contrast main,
 .high-contrast header,
 .high-contrast footer,
-.high-contrast main,
-.high-contrast .reports-page,
-.high-contrast .report-card,
-.high-contrast .reports-layout,
-.high-contrast .page-title-row,
-.high-contrast .content-bg,
+.high-contrast section,
+.high-contrast article,
+.high-contrast aside,
 .high-contrast .site-header,
 .high-contrast .primary-nav,
 .high-contrast .utility-bar,
-.high-contrast .quick-links-popover,
 .high-contrast .message-cag__card,
 .high-contrast .cag-card,
 .high-contrast .stat,
@@ -4148,49 +4148,52 @@ button {
 .high-contrast .trending-card,
 .high-contrast .featured-news,
 .high-contrast .site-footer,
-.high-contrast .quick-link {
+.high-contrast .reports-page,
+.high-contrast .reports-layout,
+.high-contrast .page-title-row,
+.high-contrast .card-grid {
   background-color: #000000 !important;
-  background-image: none !important;
   color: #ffffff !important;
   border-color: #ffffff !important;
+  box-shadow: none !important;
 }
 
-.high-contrast a,
-.high-contrast button,
-.high-contrast span,
 .high-contrast p,
+.high-contrast span,
 .high-contrast h1,
 .high-contrast h2,
 .high-contrast h3,
 .high-contrast h4,
+.high-contrast h5,
+.high-contrast h6,
+.high-contrast a,
+.high-contrast button,
 .high-contrast label,
 .high-contrast input,
 .high-contrast select {
   color: #ffffff !important;
-  background-color: transparent !important;
   border-color: #ffffff !important;
 }
 
-.high-contrast input[type="search"],
-.high-contrast select {
-  background-color: #000000 !important;
-  border: 2px solid #ffffff !important;
-  color: #ffffff !important;
-}
-
-.high-contrast .btn {
+.high-contrast .btn,
+.high-contrast button[type="submit"],
+.high-contrast a.btn,
+.high-contrast .segmented-control__btn--active,
+.high-contrast .quick-link--active {
   background-color: #000000 !important;
   color: #ffff00 !important;
   border: 2px solid #ffff00 !important;
 }
 
-.high-contrast .btn:hover {
+.high-contrast .btn:hover,
+.high-contrast button[type="submit"]:hover,
+.high-contrast a.btn:hover {
   background-color: #ffff00 !important;
   color: #000000 !important;
 }
 
 .high-contrast img {
-  filter: grayscale(100%) contrast(150%) !important;
+  filter: none !important;
 }
 
 /* Layout and Sidebar Navigation styles from Version 2 */
@@ -4301,6 +4304,9 @@ button {
   border-radius: 4px;
   box-shadow: 4px 4px 20px rgba(0, 0, 0, 0.15);
   padding: 24px;
+  border-top: 28px solid transparent;
+  margin-top: -28px;
+  background-clip: padding-box;
 }
 
 .about-menu[hidden] {
@@ -4385,6 +4391,9 @@ button {
   border-radius: 4px;
   box-shadow: 4px 4px 20px rgba(0, 0, 0, 0.15);
   padding: 24px 32px;
+  border-top: 28px solid transparent;
+  margin-top: -28px;
+  background-clip: padding-box;
 }
 
 .global-relations-menu[hidden] {

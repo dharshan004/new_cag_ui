@@ -18,6 +18,54 @@ interface ReportItem {
   type: string;
 }
 
+const HINDI_TRANSLATIONS: Record<string, { title: string; tag: string; sector: string }> = {
+  'rep-1': {
+    title: 'ग्रामीण जिलों में स्वास्थ्य सेवाओं और पोलियो टीकाकरण प्रशासन पर लेखा परीक्षा रिपोर्ट',
+    tag: 'वित्त',
+    sector: 'सामाजिक कल्याण'
+  },
+  'rep-2': {
+    title: 'सीमा सुरक्षा खरीद और आधुनिकीकरण योजनाओं पर रक्षा लेखा परीक्षा रिपोर्ट',
+    tag: 'विपणन',
+    sector: 'वित्त'
+  },
+  'rep-3': {
+    title: 'भारतीय रेलवे सिग्नलिंग सिस्टम और आधुनिकीकरण योजनाओं पर निष्पादन लेखा परीक्षा',
+    tag: 'प्रौद्योगिकी',
+    sector: 'परिवहन'
+  },
+  'rep-4': {
+    title: 'मेट्रो क्षेत्रों में प्रत्यक्ष कर प्राप्तियों और कॉर्पोरेट कर निर्धारण का अनुपालन ऑडिट',
+    tag: 'वित्त',
+    sector: 'वित्त'
+  },
+  'rep-5': {
+    title: 'नगर निगम राजस्व और संपत्ति कर निर्धारण पर लेखा परीक्षा रिपोर्ट',
+    tag: 'वित्त',
+    sector: 'सामाजिक कल्याण'
+  },
+  'rep-6': {
+    title: 'केंद्रीय उत्पाद शुल्क विभाग में सूचना प्रौद्योगिकी प्रणालियों का निष्पादन मूल्यांकन',
+    tag: 'प्रौद्योगिकी',
+    sector: 'परिवहन'
+  },
+  'home-rep-1': {
+    title: 'बुनियादी ढांचा विकास और नगरपालिका ठोस कचरा प्रबंधन पर लेखा परीक्षा रिपोर्ट',
+    tag: 'पाठ',
+    sector: 'नागरिक / शहरी विकास'
+  },
+  'home-rep-2': {
+    title: 'तमिलनाडु के तटीय जिलों में पर्यावरण प्रबंधन पर विषयगत लेखा परीक्षा',
+    tag: 'पाठ',
+    sector: 'तमिलनाडु / पर्यावरण प्रबंधन'
+  },
+  'home-rep-3': {
+    title: 'आंध्र प्रदेश में सिंचाई योजनाओं और नहर नेटवर्क पर निष्पादन लेखा परीक्षा',
+    tag: 'पाठ',
+    sector: 'आंध्र प्रदेश / सिंचाई योजनाएं'
+  }
+};
+
 function ReportsPageContent() {
   const [segment, setSegment] = useState<'reports' | 'accounts'>('reports');
   const [searchQuery, setSearchQuery] = useState('');
@@ -33,6 +81,7 @@ function ReportsPageContent() {
   const urlQuery = searchParams.get('query');
 
   const [allReports, setAllReports] = useState<ReportItem[]>([]);
+  const [lang, setLang] = useState<'English' | 'हिन्दी'>('English');
 
   useEffect(() => {
     if (urlQuery !== null) {
@@ -42,7 +91,16 @@ function ReportsPageContent() {
 
   useEffect(() => {
     setAllReports(dataManager.getReports());
+    setLang(dataManager.getLanguage());
+
+    const handleLangChange = () => {
+      setLang(dataManager.getLanguage());
+    };
+    window.addEventListener('languageChange', handleLangChange);
+    return () => window.removeEventListener('languageChange', handleLangChange);
   }, []);
+
+  const isHindi = lang === 'हिन्दी';
 
   const clearAllFilters = () => {
     setSelectedLevel('All');
@@ -68,15 +126,17 @@ function ReportsPageContent() {
     <div className="reports-page" data-node-id="364:18601" data-name="Reports">
       <div className="page-title-row" data-node-id="364:18645">
         <div className="page-title">
-          <h1 className="page-title__heading">Reports</h1>
-          <p className="page-title__count">{filteredReports.length} results found</p>
+          <h1 className="page-title__heading">{isHindi ? 'रिपोर्ट' : 'Reports'}</h1>
+          <p className="page-title__count">
+            {filteredReports.length} {isHindi ? 'परिणाम मिले' : 'results found'}
+          </p>
         </div>
         <div className="page-search">
           <label className="page-search__inner">
             <input 
               type="search" 
               className="page-search__input" 
-              placeholder="Search by keyword, report number, ministry" 
+              placeholder={isHindi ? 'रिपोर्ट खोजें...' : 'Search by keyword, report number, ministry'} 
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
             />
@@ -92,9 +152,9 @@ function ReportsPageContent() {
         <aside className="filters-panel">
           <div className="filters-panel__inner">
             <div className="flex justify-between items-center mb-4">
-              <h2 className="filters-panel__heading">Filters</h2>
-              <button onClick={clearAllFilters} className="text-xs text-[#751639] hover:underline font-semibold">
-                Clear All
+              <h2 className="filters-panel__heading">{isHindi ? 'फ़िल्टर' : 'Filters'}</h2>
+              <button onClick={clearAllFilters} className="text-xs text-[#751639] hover:underline font-semibold border-none bg-transparent cursor-pointer">
+                {isHindi ? 'सभी साफ़ करें' : 'Clear All'}
               </button>
             </div>
             <div className="filters-panel__divider"></div>
@@ -105,7 +165,7 @@ function ReportsPageContent() {
                 className={`segmented-control__btn ${segment === 'reports' ? 'segmented-control__btn--active' : ''}`}
                 onClick={() => setSegment('reports')}
               >
-                Reports
+                {isHindi ? 'रिपोर्ट' : 'Reports'}
               </button>
               <button 
                 type="button" 
@@ -115,12 +175,12 @@ function ReportsPageContent() {
                   window.location.href = '/Reports/accounts';
                 }}
               >
-                Accounts
+                {isHindi ? 'लेखा' : 'Accounts'}
               </button>
             </div>
 
             <div className="date-range mb-6">
-              <label className="date-range__label" htmlFor="select-year">Select Year</label>
+              <label className="date-range__label" htmlFor="select-year">{isHindi ? 'वर्ष चुनें' : 'Select Year'}</label>
               <div className="date-range__field-wrap">
                 <select 
                   id="select-year" 
@@ -128,7 +188,7 @@ function ReportsPageContent() {
                   value={selectedYear}
                   onChange={(e) => setSelectedYear(e.target.value)}
                 >
-                  <option value="">Select year</option>
+                  <option value="">{isHindi ? 'वर्ष चुनें' : 'Select year'}</option>
                   <option value="2026">2026</option>
                   <option value="2025">2025</option>
                   <option value="2024">2024</option>
@@ -152,40 +212,48 @@ function ReportsPageContent() {
         <section className="card-grid" aria-label="Report results">
           {filteredReports.length === 0 ? (
             <div className="text-center py-20 text-zinc-500 font-medium col-span-3">
-              No reports matching search filters.
+              {isHindi ? 'कोई रिपोर्ट फ़िल्टर से मेल नहीं खाती।' : 'No reports matching search filters.'}
             </div>
           ) : (
-            filteredReports.map((report) => (
-              <article 
-                key={report.id} 
-                className="report-card cursor-pointer transition-transform duration-200 hover:-translate-y-1 hover:shadow-md" 
-                data-node-id={report.id}
-                onClick={() => router.push(`/Reports/${report.id}`)}
-              >
-                <Link href={`/Reports/${report.id}`} className="report-card__banner" onClick={(e) => e.stopPropagation()}>
-                  <img src={report.image} alt={report.title} className="report-card__photo" />
-                </Link>
-                <div className="report-card__tag-row">
-                  <span className="report-card__tag">{report.tag}</span>
-                  <span className="report-card__date">{report.date}</span>
-                </div>
-                <div className="report-card__body">
-                  <h3 className="report-card__title">
-                    <Link href={`/Reports/${report.id}`} className="report-card__title-link" onClick={(e) => e.stopPropagation()}>
-                      {report.title}
-                    </Link>
-                  </h3>
-                  <div className="report-card__cta" onClick={(e) => e.stopPropagation()}>
-                    <img src="/assets/e48d21d03bf5d85f98dd2bf1b2a8c03db29e05e0.svg" alt="" className="report-card__download-icon" />
-                    <a href="#" className="report-card__label">Download Full Report</a>
+            filteredReports.map((report) => {
+              const details = isHindi && HINDI_TRANSLATIONS[report.id] ? HINDI_TRANSLATIONS[report.id] : {
+                title: report.title,
+                tag: report.tag,
+                sector: report.sector
+              };
+
+              return (
+                <article 
+                  key={report.id} 
+                  className="report-card cursor-pointer transition-transform duration-200 hover:-translate-y-1 hover:shadow-md" 
+                  data-node-id={report.id}
+                  onClick={() => router.push(`/Reports/${report.id}`)}
+                >
+                  <Link href={`/Reports/${report.id}`} className="report-card__banner" onClick={(e) => e.stopPropagation()}>
+                    <img src={report.image} alt={details.title} className="report-card__photo" />
+                  </Link>
+                  <div className="report-card__tag-row">
+                    <span className="report-card__tag">{details.tag}</span>
+                    <span className="report-card__date">{report.date}</span>
                   </div>
-                  <p className="report-card__sector">
-                    <span className="report-card__sector-label">Sector: </span>
-                    {report.sector}
-                  </p>
-                </div>
-              </article>
-            ))
+                  <div className="report-card__body">
+                    <h3 className="report-card__title">
+                      <Link href={`/Reports/${report.id}`} className="report-card__title-link" onClick={(e) => e.stopPropagation()}>
+                        {details.title}
+                      </Link>
+                    </h3>
+                    <div className="report-card__cta" onClick={(e) => e.stopPropagation()}>
+                      <img src="/assets/e48d21d03bf5d85f98dd2bf1b2a8c03db29e05e0.svg" alt="" className="report-card__download-icon" />
+                      <a href="#" className="report-card__label">{isHindi ? 'पूरी रिपोर्ट डाउनलोड करें' : 'Download Full Report'}</a>
+                    </div>
+                    <p className="report-card__sector">
+                      <span className="report-card__sector-label">{isHindi ? 'क्षेत्र: ' : 'Sector: '}</span>
+                      {details.sector}
+                    </p>
+                  </div>
+                </article>
+              );
+            })
           )}
         </section>
       </div>

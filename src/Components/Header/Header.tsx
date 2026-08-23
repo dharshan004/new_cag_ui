@@ -1,15 +1,27 @@
 'use client';
 
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import Menu from '@/Components/Menu/Menu';
+import { dataManager } from '@/lib/dataManager';
 
 export default function Header() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [searchVal, setSearchVal] = useState('');
   const [highContrast, setHighContrast] = useState(false);
+  const [employeeModalOpen, setEmployeeModalOpen] = useState(false);
+  const [language, setLanguage] = useState<'English' | 'हिन्दी'>('English');
   const router = useRouter();
+
+  useEffect(() => {
+    setLanguage(dataManager.getLanguage());
+    const handleLangChange = () => {
+      setLanguage(dataManager.getLanguage());
+    };
+    window.addEventListener('languageChange', handleLangChange);
+    return () => window.removeEventListener('languageChange', handleLangChange);
+  }, []);
 
   const toggleMobileMenu = () => {
     setMobileMenuOpen(!mobileMenuOpen);
@@ -39,15 +51,33 @@ export default function Header() {
     }
   };
 
+  const handleEmployeeLogin = (e: React.FormEvent) => {
+    e.preventDefault();
+    alert(language === 'हिन्दी' ? 'पहुंच स्वीकृत! आईएएडी इंट्रानेट डैशबोर्ड पर पुनर्निर्देशित किया जा रहा है...' : 'Access Granted! Redirecting to IAAD intranet workflow dashboard...');
+    setEmployeeModalOpen(false);
+  };
+
+  const toggleLanguage = () => {
+    dataManager.setLanguage(language === 'English' ? 'हिन्दी' : 'English');
+  };
+
+  const isHindi = language === 'हिन्दी';
+
   return (
     <header className="site-header" data-node-id="115:2138" data-name="Menu">
       {/* Utility Bar */}
       <div className="utility-bar" data-node-id="115:2156">
         <nav className="utility-links" aria-label="Utility links">
-          <a href="#" className="utility-link">Knowledge Hub</a>
-          <a href="#" className="utility-link">Employee Portal</a>
-          <a href="#" className="utility-link">News &amp; Events</a>
-          <a href="#" className="utility-link">Contact</a>
+          <Link href="/Resources" className="utility-link">{isHindi ? 'ज्ञान केंद्र' : 'Knowledge Hub'}</Link>
+          <button 
+            type="button" 
+            className="utility-link bg-transparent border-none p-0 cursor-pointer hover:underline"
+            onClick={() => setEmployeeModalOpen(true)}
+          >
+            {isHindi ? 'कर्मचारी पोर्टल' : 'Employee Portal'}
+          </button>
+          <Link href="/#news-events-heading" className="utility-link">{isHindi ? 'समाचार एवं घटनाएँ' : 'News & Events'}</Link>
+          <Link href="/About/Index-Menu-About/Global-relations/International Relations Wing" className="utility-link">{isHindi ? 'संपर्क' : 'Contact'}</Link>
         </nav>
         <div className="accessibility">
           <button 
@@ -60,10 +90,15 @@ export default function Header() {
             <span className="a11y-toggle__label">A</span>
           </button>
           <img src="/assets/375873ae673ed89a10f1c4f0795d68cf55801045.svg" alt="" className="chevron chevron--small" />
-          <div className="lang-select">
-            <span>English</span>
+          <button 
+            type="button"
+            className="lang-select cursor-pointer flex items-center gap-1 bg-transparent border-none text-[10px] text-zinc-600 hover:underline" 
+            onClick={toggleLanguage}
+            style={{ position: 'relative', zIndex: 50, cursor: 'pointer' }}
+          >
+            <span>{language}</span>
             <img src="/assets/375873ae673ed89a10f1c4f0795d68cf55801045.svg" alt="" className="chevron chevron--small" />
-          </div>
+          </button>
         </div>
       </div>
 
@@ -74,7 +109,7 @@ export default function Header() {
         </Link>
         
         {/* Render Menu Component */}
-        <Menu mobileMenuOpen={mobileMenuOpen} />
+        <Menu mobileMenuOpen={mobileMenuOpen} language={language} />
 
         <button 
           type="button" 
@@ -123,6 +158,57 @@ export default function Header() {
           </div>
         </div>
       </div>
+
+      {/* Employee Login Modal */}
+      {employeeModalOpen && (
+        <div className="fixed inset-0 bg-black/80 flex items-center justify-center z-50 p-4">
+          <div className="bg-white rounded-xl overflow-hidden max-w-sm w-full shadow-2xl relative border border-zinc-200">
+            <div className="p-4 border-b border-[#e6e6e6] flex justify-between items-center bg-[#0a3d30]">
+              <h3 className="font-bold text-white text-xs">Employee Portal - Sign In</h3>
+              <button 
+                onClick={() => setEmployeeModalOpen(false)}
+                className="text-white hover:text-zinc-300 font-bold text-xs cursor-pointer bg-transparent border-none"
+              >
+                ✕ Close
+              </button>
+            </div>
+            <form onSubmit={handleEmployeeLogin} className="p-6 space-y-4 bg-[#fbfbfb]" autoComplete="off">
+              {/* Dummy credentials to hijack browser autofill */}
+              <input style={{ display: 'none' }} type="text" name="fakeusername" />
+              <input style={{ display: 'none' }} type="password" name="fakepassword" />
+
+              <div>
+                <label className="block text-[10px] font-semibold text-zinc-500 mb-1" htmlFor="emp-id">Employee ID / GPF No.</label>
+                <input 
+                  id="emp-id"
+                  type="text" 
+                  required 
+                  autoComplete="off"
+                  className="w-full px-3 py-2 border border-zinc-300 rounded text-xs outline-none focus:border-[#0a3d30] text-zinc-700"
+                  placeholder="Enter employee ID..."
+                />
+              </div>
+              <div>
+                <label className="block text-[10px] font-semibold text-zinc-500 mb-1" htmlFor="emp-pass">Password</label>
+                <input 
+                  id="emp-pass"
+                  type="password" 
+                  required 
+                  autoComplete="new-password"
+                  className="w-full px-3 py-2 border border-zinc-300 rounded text-xs outline-none focus:border-[#0a3d30] text-zinc-700"
+                  placeholder="Enter password..."
+                />
+              </div>
+              <button 
+                type="submit" 
+                className="w-full bg-[#0a3d30] hover:bg-[#082f25] text-white text-xs font-bold py-2 rounded transition-colors cursor-pointer border-none"
+              >
+                Access Portal
+              </button>
+            </form>
+          </div>
+        </div>
+      )}
     </header>
   );
 }
