@@ -1,3 +1,4 @@
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+Devanagari:wght@300;400;500;600;700;800;900&display=swap');
 @import "tailwindcss";
 
 :root {
@@ -26,7 +27,7 @@
 }
 
 @theme {
-  --font-sans: var(--font-inter), "Inter", sans-serif;
+  --font-sans: var(--font-inter), "Noto Sans Devanagari", "Inter", sans-serif;
   --color-green-dark: var(--green-dark);
   --color-gold: var(--gold);
   --color-gold-2: var(--gold-2);

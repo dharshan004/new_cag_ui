@@ -142,7 +142,7 @@ export default function Header() {
               value={searchVal}
               onChange={(e) => setSearchVal(e.target.value)}
               onKeyDown={handleSearchKeyDown}
-              placeholder="Search reports..."
+              placeholder={isHindi ? 'रिपोर्ट खोजें...' : 'Search reports...'}
               style={{
                 position: 'relative',
                 opacity: 1,
@@ -164,12 +164,12 @@ export default function Header() {
         <div className="fixed inset-0 bg-black/80 flex items-center justify-center z-50 p-4">
           <div className="bg-white rounded-xl overflow-hidden max-w-sm w-full shadow-2xl relative border border-zinc-200">
             <div className="p-4 border-b border-[#e6e6e6] flex justify-between items-center bg-[#0a3d30]">
-              <h3 className="font-bold text-white text-xs">Employee Portal - Sign In</h3>
+              <h3 className="font-bold text-white text-xs">{isHindi ? 'कर्मचारी पोर्टल - साइन इन' : 'Employee Portal - Sign In'}</h3>
               <button 
                 onClick={() => setEmployeeModalOpen(false)}
                 className="text-white hover:text-zinc-300 font-bold text-xs cursor-pointer bg-transparent border-none"
               >
-                ✕ Close
+                {isHindi ? '✕ बंद करें' : '✕ Close'}
               </button>
             </div>
             <form onSubmit={handleEmployeeLogin} className="p-6 space-y-4 bg-[#fbfbfb]" autoComplete="off">
@@ -178,32 +178,36 @@ export default function Header() {
               <input style={{ display: 'none' }} type="password" name="fakepassword" />
 
               <div>
-                <label className="block text-[10px] font-semibold text-zinc-500 mb-1" htmlFor="emp-id">Employee ID / GPF No.</label>
+                <label className="block text-[10px] font-semibold text-zinc-500 mb-1" htmlFor="emp-id">
+                  {isHindi ? 'कर्मचारी आईडी / जीपीएफ नंबर' : 'Employee ID / GPF No.'}
+                </label>
                 <input 
                   id="emp-id"
                   type="text" 
                   required 
                   autoComplete="off"
                   className="w-full px-3 py-2 border border-zinc-300 rounded text-xs outline-none focus:border-[#0a3d30] text-zinc-700"
-                  placeholder="Enter employee ID..."
+                  placeholder={isHindi ? 'कर्मचारी आईडी दर्ज करें...' : 'Enter employee ID...'}
                 />
               </div>
               <div>
-                <label className="block text-[10px] font-semibold text-zinc-500 mb-1" htmlFor="emp-pass">Password</label>
+                <label className="block text-[10px] font-semibold text-zinc-500 mb-1" htmlFor="emp-pass">
+                  {isHindi ? 'पासवर्ड' : 'Password'}
+                </label>
                 <input 
                   id="emp-pass"
                   type="password" 
                   required 
                   autoComplete="new-password"
                   className="w-full px-3 py-2 border border-zinc-300 rounded text-xs outline-none focus:border-[#0a3d30] text-zinc-700"
-                  placeholder="Enter password..."
+                  placeholder={isHindi ? 'पासवर्ड दर्ज करें...' : 'Enter password...'}
                 />
               </div>
               <button 
                 type="submit" 
                 className="w-full bg-[#0a3d30] hover:bg-[#082f25] text-white text-xs font-bold py-2 rounded transition-colors cursor-pointer border-none"
               >
-                Access Portal
+                {isHindi ? 'पोर्टल खोलें' : 'Access Portal'}
               </button>
             </form>
           </div>
