@@ -751,6 +751,8 @@ button {
   border-right: 1px solid var(--border-grey);
   border-bottom: 1px solid var(--border-grey);
   text-align: center;
+  position: relative;
+  transition: all 0.25s ease;
 }
 
 .quick-link:nth-child(3n) {
@@ -767,6 +769,30 @@ button {
   background: var(--green-dark);
   border-top-left-radius: 8px;
   box-shadow: 4px 4px 10px 10px rgba(0, 0, 0, 0.05);
+}
+
+.quick-link:hover {
+  background: var(--green-dark);
+  color: #fff;
+  box-shadow: 0 10px 20px rgba(0, 64, 35, 0.15);
+  transform: translateY(-2px);
+  z-index: 2;
+}
+
+.quick-link:hover .quick-link__label {
+  color: #fff;
+}
+
+.quick-link:hover .quick-link__icon {
+  filter: invert(100%) brightness(200%);
+}
+
+.quick-link__icon--white-base {
+  filter: brightness(0) opacity(0.7);
+}
+
+.quick-link:hover .quick-link__icon--white-base {
+  filter: none;
 }
 
 .quick-link__icon-wrap {
@@ -835,6 +861,33 @@ button {
   flex-direction: column;
   gap: 16px;
   box-shadow: 4px 4px 2px rgba(0, 0, 0, 0.02);
+  transition: all 0.25s ease;
+}
+
+.cag-card:hover {
+  background: var(--green-dark);
+  box-shadow: 0 10px 25px rgba(0, 64, 35, 0.15);
+}
+
+.cag-card:hover .cag-card__title {
+  color: #fff;
+}
+
+.cag-card:hover .cag-card__desc {
+  color: rgba(255, 255, 255, 0.85);
+}
+
+.cag-card:hover .cag-card__divider {
+  border-top-color: rgba(255, 255, 255, 0.2);
+}
+
+.cag-card:hover .cag-card__icon {
+  background: #fff;
+  border-color: var(--green-dark);
+}
+
+.cag-card:hover .cag-card__icon img {
+  filter: invert(18%) sepia(61%) saturate(1039%) hue-rotate(126deg) brightness(94%) contrast(96%);
 }
 
 .cag-card__icon {

@@ -92,7 +92,7 @@ export default function Banner() {
     e.preventDefault();
     setActivePromo({
       title,
-      text: isHindi 
+      text: isHindi
         ? `${title} के लिए आधिकारिक दिशा-निर्देश और जमा विवरण। प्रविष्टियां पात्र अकादमिक विद्वानों, शोधकर्ताओं और सार्वजनिक नीति के छात्रों के लिए खुली हैं। पंजीकरण और सारांश अपलोड करने की अंतिम तिथि 15 अक्टूबर, 2026 है। विवरण के लिए कृपया research-contest@cag.gov.in पर ईमेल करें।`
         : `Official guidelines and submission details for the ${title}. Submissions are open to eligible academic scholars, researchers, and public policy students. The deadline for registration and abstract upload is October 15, 2026. Please email research-contest@cag.gov.in for details.`
     });
@@ -105,10 +105,10 @@ export default function Banner() {
       <section className="hero" data-node-id="356:17253" aria-label="Hero banner" style={{ position: 'relative' }}>
         {/* Render all slide images with smooth cross-fade opacity transitions */}
         {SLIDES.map((slide, idx) => (
-          <img 
+          <img
             key={idx}
-            src={slide.image} 
-            alt="Comptroller and Auditor General portal hero slide background" 
+            src={slide.image}
+            alt="Comptroller and Auditor General portal hero slide background"
             className="hero__bg"
             style={{
               opacity: slideIndex === idx ? 1 : 0,
@@ -124,7 +124,7 @@ export default function Banner() {
         ))}
 
         <div className="hero__overlay" style={{ zIndex: 2 }}></div>
-        
+
         <div className="hero__content" data-node-id="356:17259" style={{ zIndex: 3 }}>
           <div className="hero__text-block" data-node-id="356:17260">
             <span className="hero__accent-line" data-node-id="356:17261"></span>
@@ -146,15 +146,15 @@ export default function Banner() {
             </Link>
           </div>
         </div>
-        
+
         {/* Quick Links Popover Button */}
-        <button 
-          type="button" 
-          className="hero__quick-link" 
-          aria-label="Quick links" 
-          aria-expanded={quickLinksOpen ? 'true' : 'false'} 
-          aria-controls="quick-links-popover" 
-          id="quick-links-trigger" 
+        <button
+          type="button"
+          className="hero__quick-link"
+          aria-label="Quick links"
+          aria-expanded={quickLinksOpen ? 'true' : 'false'}
+          aria-controls="quick-links-popover"
+          id="quick-links-trigger"
           data-node-id="356:17267"
           onClick={() => setQuickLinksOpen(!quickLinksOpen)}
           style={{ zIndex: 4 }}
@@ -164,12 +164,12 @@ export default function Banner() {
 
         {/* Quick Links popover */}
         {quickLinksOpen && (
-          <div 
-            className="quick-links-popover" 
-            id="quick-links-popover" 
-            role="dialog" 
-            aria-label="Quick Links" 
-            data-node-id="177:18398" 
+          <div
+            className="quick-links-popover"
+            id="quick-links-popover"
+            role="dialog"
+            aria-label="Quick Links"
+            data-node-id="177:18398"
             data-name="Quick Links"
             style={{ zIndex: 5 }}
           >
@@ -177,11 +177,11 @@ export default function Banner() {
               <p className="quick-links-popover__title" data-node-id="177:18400">
                 {isHindi ? 'त्वरित लिंक' : 'Quick Links'}
               </p>
-              <button 
-                type="button" 
-                className="quick-links-popover__close" 
-                id="quick-links-close" 
-                aria-label="Close" 
+              <button
+                type="button"
+                className="quick-links-popover__close"
+                id="quick-links-close"
+                aria-label="Close"
                 data-node-id="177:18401"
                 onClick={() => setQuickLinksOpen(false)}
               >
@@ -204,10 +204,10 @@ export default function Banner() {
         {/* Carousel indicators linked to slides */}
         <div className="hero__carousel" role="tablist" aria-label="Hero image carousel" data-node-id="356:17272" style={{ zIndex: 4 }}>
           {SLIDES.map((_, idx) => (
-            <span 
+            <span
               key={idx}
-              className={`hero__carousel-dot ${slideIndex === idx ? 'hero__carousel-dot--active' : ''} cursor-pointer`} 
-              role="tab" 
+              className={`hero__carousel-dot ${slideIndex === idx ? 'hero__carousel-dot--active' : ''} cursor-pointer`}
+              role="tab"
               aria-selected={slideIndex === idx ? 'true' : 'false'}
               onClick={() => setSlideIndex(idx)}
               style={{ cursor: 'pointer' }}
@@ -222,7 +222,7 @@ export default function Banner() {
           <div className="bg-white rounded-xl overflow-hidden max-w-xl w-full shadow-2xl relative">
             <div className="p-4 border-b border-[#e6e6e6] flex justify-between items-center bg-[#0a3d30]">
               <h3 className="font-bold text-white text-sm">{activePromo.title}</h3>
-              <button 
+              <button
                 onClick={() => setActivePromo(null)}
                 className="text-white hover:text-zinc-300 font-bold text-sm cursor-pointer bg-transparent border-none"
               >

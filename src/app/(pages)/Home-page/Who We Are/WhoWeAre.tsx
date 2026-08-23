@@ -46,9 +46,9 @@ export default function WhoWeAre() {
           {isHindi ? 'सर्वाधिक देखे गए' : 'Most Viewed'}
         </h2>
         <div className="quick-links" data-node-id="356:17076">
-          <Link href="/Reports" className="quick-link quick-link--active" data-node-id="356:17083">
+          <Link href="/Reports" className="quick-link" data-node-id="356:17083">
             <div className="quick-link__icon-wrap">
-              <img src="/assets/59d09d67fc097dcb3fe6785027400d737b662e4c.svg" alt="Latest Reports icon" className="quick-link__icon" />
+              <img src="/assets/59d09d67fc097dcb3fe6785027400d737b662e4c.svg" alt="Latest Reports icon" className="quick-link__icon quick-link__icon--white-base" />
             </div>
             <p className="quick-link__label" data-node-id="356:17095">
               {isHindi ? 'नवीनतम रिपोर्ट' : 'Latest Reports'}
