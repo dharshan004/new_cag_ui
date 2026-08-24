@@ -128,6 +128,7 @@ button {
   border-radius: 8px;
   font-size: 16px;
   white-space: nowrap;
+  transition: all 0.2s ease;
 }
 
 .btn--white {
@@ -147,6 +148,13 @@ button {
   border: 1px solid var(--text-mid);
   color: #1a1a1a;
   font-weight: 500;
+}
+
+.btn--outline-dark:hover {
+  background: var(--green-dark);
+  border-color: var(--green-dark);
+  color: #fff;
+  cursor: pointer;
 }
 
 /* ==========================================================================
@@ -668,22 +676,35 @@ button {
   align-items: center;
   justify-content: center;
   padding: 8px;
+  transition: all 0.2s ease;
 }
 
 .icon-btn img {
   width: 24px;
   height: 24px;
+  transition: opacity 0.2s ease;
 }
 
 .icon-btn--active {
   background: #fff;
-  border: 1px solid #2e2e31;
+  border: 1px solid #fff;
+  cursor: pointer;
+}
+
+.icon-btn--active:hover {
+  background: #f0f0f0;
+  border-color: #f0f0f0;
+  transform: scale(1.05);
 }
 
 .icon-btn--disabled {
-  background: #f5f5f5;
-  border: none;
-  cursor: default;
+  background: rgba(255, 255, 255, 0.15);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  cursor: not-allowed;
+}
+
+.icon-btn--disabled img {
+  opacity: 0.35;
 }
 
 .icon-btn__arrow-right {
@@ -881,14 +902,6 @@ button {
   border-top-color: rgba(255, 255, 255, 0.2);
 }
 
-.cag-card:hover .cag-card__icon {
-  background: #fff;
-  border-color: var(--green-dark);
-}
-
-.cag-card:hover .cag-card__icon img {
-  filter: invert(18%) sepia(61%) saturate(1039%) hue-rotate(126deg) brightness(94%) contrast(96%);
-}
 
 .cag-card__icon {
   width: 48px;
@@ -1069,6 +1082,14 @@ button {
   display: flex;
   flex-direction: column;
   gap: 16px;
+  cursor: pointer;
+  transition: all 0.25s ease;
+}
+
+.video-card:hover {
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.05);
+  transform: translateY(-2px);
+  border-color: var(--border-grey);
 }
 
 .video-card__banner {

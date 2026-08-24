@@ -97,16 +97,18 @@ export default function NewsEvents() {
         </h2>
         <div className="videos__grid">
           {videosList.map((video) => (
-            <article key={video.id} className="video-card">
+            <article 
+              key={video.id} 
+              className="video-card"
+              onClick={() => setActiveVideo({ title: video.title, embedUrl: video.embedUrl })}
+            >
               <div className="video-card__banner bg-[#e6e6e6] aspect-video relative flex items-center justify-center">
-                <button 
-                  type="button" 
+                <div 
                   className="video-card__play cursor-pointer hover:scale-110 transition-transform" 
                   aria-label="Play video"
-                  onClick={() => setActiveVideo({ title: video.title, embedUrl: video.embedUrl })}
                 >
                   <img src="/assets/6a8e196ed104ce6e5fe5cd7fe7a791b5a5fc2769.svg" alt="" />
-                </button>
+                </div>
               </div>
               <div className="video-card__details">
                 <div className="video-card__meta">
