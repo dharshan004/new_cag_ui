@@ -4,6 +4,11 @@ import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { dataManager } from '@/lib/dataManager';
 
+import image1 from '@/app/Assets/Images/17a8a6edf588630a0c7494a054fb34e604c4f41c.png';
+import image2 from '@/app/Assets/Images/e2c5a3b888a0623426c634ce2f2bee016b8fb5ab.png';
+import image3 from '@/app/Assets/Images/c4913da1b882a52fb7cb973a9d334b9abf2e253e.png';
+import image4 from '@/app/Assets/Images/d14889fd29ae93bd23d9b51c4dad883e07f826bf.png';
+
 interface Slide {
   image: string;
   engLine1: string;
@@ -18,7 +23,7 @@ interface Slide {
 
 const SLIDES: Slide[] = [
   {
-    image: '/assets/17a8a6edf588630a0c7494a054fb34e604c4f41c.png',
+    image: image1.src,
     engLine1: 'Ensuring',
     engLine2: 'Transparency, Integrity & ',
     engLine3: 'Accountability',
@@ -29,7 +34,7 @@ const SLIDES: Slide[] = [
     hinSub: 'भारत के सर्वोच्च लेखापरीक्षा संस्थान से ऑडिट रिपोर्ट, खाते और संस्थागत संसाधन प्राप्त करें।'
   },
   {
-    image: '/assets/e2c5a3b888a0623426c634ce2f2bee016b8fb5ab.png',
+    image: image2.src,
     engLine1: 'Empowering',
     engLine2: 'Good Governance & ',
     engLine3: 'Public Trust',
@@ -40,7 +45,7 @@ const SLIDES: Slide[] = [
     hinSub: 'सभी हितधारकों को स्वतंत्र आश्वासन प्रदान करना कि सार्वजनिक धन का कुशलतापूर्वक उपयोग किया जा रहा है।'
   },
   {
-    image: '/assets/c4913da1b882a52fb7cb973a9d334b9abf2e253e.png',
+    image: image3.src,
     engLine1: 'Leading',
     engLine2: 'Global Relations & ',
     engLine3: 'Audit Standards',
@@ -51,7 +56,7 @@ const SLIDES: Slide[] = [
     hinSub: 'आधुनिक सार्वजनिक लेखा परीक्षा पद्धतियों को आकार देने के लिए वैश्विक स्तर पर सर्वोच्च लेखा परीक्षा मंचों पर भारत का प्रतिनिधित्व करना।'
   },
   {
-    image: '/assets/d14889fd29ae93bd23d9b51c4dad883e07f826bf.png',
+    image: image4.src,
     engLine1: 'Fostering',
     engLine2: 'Digital Auditing & ',
     engLine3: 'Data Analytics',

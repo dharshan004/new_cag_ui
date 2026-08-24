@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+Devanagari:wght@300;400;500;600;700;800;900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Noto+Sans+Devanagari:wght@200;300;400;500;600;700;800;900&family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&display=swap');
 @import "tailwindcss";
 
 :root {
@@ -27,7 +27,8 @@
 }
 
 @theme {
-  --font-sans: var(--font-inter), "Noto Sans Devanagari", "Inter", sans-serif;
+  --font-sans: var(--font-noto), "Noto Sans Devanagari", sans-serif;
+  --font-dm: var(--font-dm), sans-serif;
   --color-green-dark: var(--green-dark);
   --color-gold: var(--gold);
   --color-gold-2: var(--gold-2);
@@ -4285,28 +4286,32 @@ button {
   background: #fff;
   border: 1px solid var(--border-grey-light);
   border-radius: 8px;
-  box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.04);
+  box-shadow: 4px 4px 20px rgba(0, 0, 0, 0.04);
   padding: 24px;
 }
 
 .about-sidebar__heading {
+  font-family: 'Noto Sans', sans-serif;
   font-size: 20px;
-  font-weight: 600;
+  font-weight: 700;
   color: #000;
   margin: 0 0 16px;
+  text-align: left;
 }
 
 .about-sidebar__divider {
-  border-top: 1px solid var(--border-grey);
+  border-top: 1px solid var(--border-grey-light);
   margin: 0 0 16px;
 }
 
 .about-sidebar__group-heading {
+  font-family: 'Noto Sans', sans-serif;
   font-size: 16px;
   font-weight: 700;
   color: #2a2a2a;
   margin: 0 0 4px;
   padding: 8px 16px;
+  text-align: left;
 }
 
 .about-sidebar__sublist {
@@ -4315,6 +4320,7 @@ button {
   gap: 4px;
   padding-left: 16px;
   margin-bottom: 16px;
+  border-left: none; /* Reset for standard */
 }
 
 .about-sidebar__sublist:last-child {
@@ -4324,7 +4330,9 @@ button {
 .about-sidebar__link {
   display: block;
   padding: 8px 16px;
+  font-family: 'Noto Sans', sans-serif;
   font-size: 14px;
+  font-weight: 500;
   color: #2a2a2a;
   border-left: 1px solid var(--border-grey);
   text-decoration: none;
@@ -4334,6 +4342,7 @@ button {
 .about-sidebar__link:hover,
 .about-sidebar__link:focus-visible {
   text-decoration: underline;
+  color: var(--maroon);
 }
 
 .about-sidebar__link--active {
@@ -4346,6 +4355,26 @@ button {
 
 .about-sidebar__link--active:hover {
   text-decoration: none;
+}
+
+/* Flat About Us sidebar menu overrides */
+.about-sidebar--flat .about-sidebar__link {
+  border-left: none !important;
+  border-radius: 4px;
+  color: #565656;
+}
+
+.about-sidebar--flat .about-sidebar__link:hover {
+  color: #751639;
+  background: rgba(117, 22, 57, 0.02);
+  text-decoration: none;
+}
+
+.about-sidebar--flat .about-sidebar__link--active {
+  background: rgba(117, 22, 57, 0.06) !important;
+  color: #751639 !important;
+  font-weight: 600 !important;
+  text-decoration: none !important;
 }
 
 .about-content {
@@ -4836,5 +4865,108 @@ button {
   .cag-profile-card__photo {
     width: 100%;
     height: 200px;
+  }
+}
+
+/* Former Generals page card grid layout specs */
+.former-generals-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+  width: 100%;
+  margin-top: 16px;
+}
+
+.former-cag-card {
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  padding: 20px;
+  width: 100%;
+  height: 404px;
+  background: #FFFFFF;
+  border: 1px solid #EFEFEF;
+  box-shadow: 0px 1px 14px rgba(0, 0, 0, 0.08);
+  border-radius: 8px;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.former-cag-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0px 8px 24px rgba(0, 0, 0, 0.12);
+  border-color: #E6E6E6;
+}
+
+.former-cag-card__content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+  gap: 20px;
+}
+
+.former-cag-card__photo-placeholder {
+  width: 100%;
+  height: 276px;
+  background: linear-gradient(135deg, #F5F5F7 0%, #EFEFEF 100%);
+  border: 1px solid #EAEAEA;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.former-cag-card__footer {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 12px;
+  width: 100%;
+  height: 68px;
+  background: #EFEFEF;
+  border-radius: 8px;
+}
+
+.former-cag-card__text-wrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 4px;
+}
+
+.former-cag-card__name {
+  font-family: 'Noto Sans', sans-serif;
+  font-weight: 600;
+  font-size: 12px;
+  line-height: 18px;
+  text-align: center;
+  color: #000000;
+}
+
+.former-cag-card__tenure {
+  font-family: 'Noto Sans', sans-serif;
+  font-weight: 400;
+  font-size: 10px;
+  line-height: 18px;
+  text-align: center;
+  color: #696868;
+}
+
+@media (max-width: 1024px) {
+  .former-generals-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 640px) {
+  .former-generals-grid {
+    grid-template-columns: 1fr;
+  }
+  .former-cag-card {
+    height: auto;
   }
 }

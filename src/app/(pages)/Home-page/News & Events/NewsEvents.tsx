@@ -3,6 +3,7 @@
 import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { dataManager, NewsItem } from '@/lib/dataManager';
+import defaultFeaturedNewsImage from '@/app/Assets/Images/e2c5a3b888a0623426c634ce2f2bee016b8fb5ab.png';
 
 const HINDI_NEWS_TRANSLATIONS: Record<string, { title: string; desc: string }> = {
   'news-1': {
@@ -199,7 +200,7 @@ export default function NewsEvents() {
           {featuredNews && (
             <Link href="/Reports/rep-3" className="featured-news cursor-pointer block hover:scale-[1.01] transition-transform">
               <img 
-                src={featuredNews.image || "/assets/e2c5a3b888a0623426c634ce2f2bee016b8fb5ab.png"} 
+                src={featuredNews.image || defaultFeaturedNewsImage.src} 
                 alt={isHindi && HINDI_NEWS_TRANSLATIONS['news-featured'] ? HINDI_NEWS_TRANSLATIONS['news-featured'].title : featuredNews.title} 
                 className="featured-news__photo" 
               />

@@ -7,7 +7,6 @@ export interface FormerCAG {
   id: string;
   name: string;
   tenure: string;
-  description: string;
 }
 
 export default function FormerCAGCards() {
@@ -24,47 +23,60 @@ export default function FormerCAGCards() {
 
   const isHindi = lang === 'हिन्दी';
 
+  // 9 cards mapping exactly to the figma mockup layout
   const legacyListEnglish: FormerCAG[] = [
-    { id: 'fc-1', name: 'Shri Girish Chandra Murmu', tenure: '2020 – 2024', description: 'Mandated transparency during key technological transformations in public accounts auditing.' },
-    { id: 'fc-2', name: 'Shri Rajiv Mehrishi', tenure: '2017 – 2020', description: 'Streamlined environmental and compliance audits for state and central bodies.' },
-    { id: 'fc-3', name: 'Shri Shashi Kant Sharma', tenure: '2013 – 2017', description: 'Emphasized IT auditing frameworks across municipal and local bodies.' },
-    { id: 'fc-4', name: 'Shri Vinod Rai', tenure: '2008 – 2013', description: 'Pioneered landmark audits of national resource allocation frameworks.' },
+    { id: 'fc-1', name: 'Girish Chandra Murmu', tenure: '(2020-2024)' },
+    { id: 'fc-2', name: 'Rajiv Mehrishi', tenure: '(2017-2020)' },
+    { id: 'fc-3', name: 'Shashi Kant Sharma', tenure: '(2013-2017)' },
+    { id: 'fc-4', name: 'Rajiv Mehrishi', tenure: '(2017-2020)' },
+    { id: 'fc-5', name: 'Shashi Kant Sharma', tenure: '(2013-2017)' },
+    { id: 'fc-6', name: 'Girish Chandra Murmu', tenure: '(2020-2024)' },
+    { id: 'fc-7', name: 'Shashi Kant Sharma', tenure: '(2013-2017)' },
+    { id: 'fc-8', name: 'Girish Chandra Murmu', tenure: '(2020-2024)' },
+    { id: 'fc-9', name: 'Rajiv Mehrishi', tenure: '(2017-2020)' }
   ];
 
   const legacyListHindi: FormerCAG[] = [
-    { id: 'fc-1', name: 'श्री गिरीश चंद्र मुर्मू', tenure: '2020 – 2024', description: 'सार्वजनिक खातों के ऑडिट में प्रमुख तकनीकी परिवर्तनों के दौरान पारदर्शिता को अनिवार्य किया।' },
-    { id: 'fc-2', name: 'श्री राजीव महर्षि', tenure: '2017 – 2020', description: 'राज्य और केंद्रीय निकायों के लिए पर्यावरण और अनुपालन ऑडिट को सुव्यवस्थित किया।' },
-    { id: 'fc-3', name: 'श्री शशिकांत शर्मा', tenure: '2013 – 2017', description: 'नगरपालिका और स्थानीय निकायों में आईटी ऑडिट ढांचे पर जोर दिया।' },
-    { id: 'fc-4', name: 'श्री विनोद राय', tenure: '2008 – 2013', description: 'राष्ट्रीय संसाधन आवंटन ढांचे के ऐतिहासिक ऑडिट का बीड़ा उठाया।' },
+    { id: 'fc-1', name: 'गिरीश चंद्र मुर्मू', tenure: '(2020-2024)' },
+    { id: 'fc-2', name: 'राजीव महर्षि', tenure: '(2017-2020)' },
+    { id: 'fc-3', name: 'शशिकांत शर्मा', tenure: '(2013-2017)' },
+    { id: 'fc-4', name: 'राजीव महर्षि', tenure: '(2017-2020)' },
+    { id: 'fc-5', name: 'शशिकांत शर्मा', tenure: '(2013-2017)' },
+    { id: 'fc-6', name: 'गिरीश चंद्र मुर्मू', tenure: '(2020-2024)' },
+    { id: 'fc-7', name: 'शशिकांत शर्मा', tenure: '(2013-2017)' },
+    { id: 'fc-8', name: 'गिरीश चंद्र मुर्मू', tenure: '(2020-2024)' },
+    { id: 'fc-9', name: 'राजीव महर्षि', tenure: '(2017-2020)' }
   ];
 
   const legacyList = isHindi ? legacyListHindi : legacyListEnglish;
 
   return (
-    <div className="space-y-6">
-      <div className="text-center">
-        <h3 className="text-2xl font-bold text-cag-dark">
-          {isHindi ? 'नेतृत्व की विरासत' : 'Legacy of Leadership'}
-        </h3>
-        <p className="text-sm text-zinc-500 mt-1">
-          {isHindi ? 'भारत के पूर्व नियंत्रक एवं महालेखा परीक्षक' : 'Former-Comptroller-and-Auditors-General of India'}
-        </p>
-      </div>
-
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-        {legacyList.map((cag) => (
-          <div key={cag.id} className="bg-white border border-[#d7d7d7] rounded-xl p-6 shadow-sm flex items-start gap-4">
-            <div className="w-14 h-14 rounded-full bg-zinc-200 flex items-center justify-center text-zinc-500 font-bold shrink-0">
-              {isHindi ? 'सीएजी' : 'CAG'}
+    <div className="former-generals-grid" data-name="Former Generals">
+      {legacyList.map((cag, idx) => (
+        <div key={`${cag.id}-${idx}`} className="former-cag-card" data-name="Former CAG Card">
+          <div className="former-cag-card__content" data-name="Frame 1000005458">
+            {/* Elegant placeholder silhouette box matching width/height requirements */}
+            <div className="former-cag-card__photo-placeholder" data-name="Mask group" aria-label="Photo placeholder">
+              <svg 
+                className="w-16 h-16 text-zinc-300" 
+                fill="currentColor" 
+                viewBox="0 0 24 24" 
+                xmlns="http://www.w3.org/2000/svg"
+                aria-hidden="true"
+              >
+                <path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z" />
+              </svg>
             </div>
-            <div>
-              <h4 className="font-bold text-[#2a2a2a]">{cag.name}</h4>
-              <p className="text-xs text-cag-green font-semibold mt-0.5">{cag.tenure}</p>
-              <p className="text-xs text-zinc-500 mt-2 leading-relaxed">{cag.description}</p>
+            
+            <div className="former-cag-card__footer" data-name="Frame 1000005457">
+              <div className="former-cag-card__text-wrapper" data-name="Frame 1000005456">
+                <span className="former-cag-card__name">{cag.name}</span>
+                <span className="former-cag-card__tenure">{cag.tenure}</span>
+              </div>
             </div>
           </div>
-        ))}
-      </div>
+        </div>
+      ))}
     </div>
   );
 }

@@ -7,6 +7,7 @@ import { dataManager } from '@/lib/dataManager';
 const DICTIONARY: Record<string, string> = {
   // Page Titles (rendered inside AboutLayout h2)
   'Comptroller & Auditor General of India Profile': 'भारत के नियंत्रक एवं महालेखा परीक्षक की प्रोफाइल',
+  'CAG of India': 'भारत के नियंत्रक और महालेखापरीक्षक',
   'Our Vision, Mission & Core Values': 'हमारा दृष्टिकोण, ध्येय और मूल मूल्य',
   'Organisation-Chart': 'संगठन चार्ट',
   'Former-Comptroller-and-Auditors-General': 'पूर्व सीएजी गैलरी',
@@ -104,15 +105,15 @@ export default function AboutLayout({ title, children }: { title: string; childr
 
   return (
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10" ref={containerRef}>
-      <div className="flex flex-col lg:flex-row gap-8 items-start">
-        <aside className="w-full lg:w-64 shrink-0">
+      <div className="about-layout flex flex-col lg:flex-row gap-10 items-start">
+        <aside className="w-full lg:w-[310px] shrink-0">
           <AboutusSidemenu />
         </aside>
-        <main className="flex-grow bg-white border border-[#d7d7d7] rounded-xl p-8 shadow-sm w-full">
-          <h2 className="text-3xl font-extrabold text-[#2a2a2a] tracking-tight border-b border-[#e6e6e6] pb-4 mb-6 text-left">
+        <main className="about-content flex-grow w-full">
+          <h2 className="text-[24px] font-bold text-[#751639] leading-[1.6] border-b border-[#e6e6e6] pb-4 mb-6 text-left">
             {displayTitle}
           </h2>
-          <div className="prose prose-emerald max-w-none text-zinc-700 leading-relaxed space-y-6">
+          <div className="text-zinc-700 leading-relaxed space-y-6">
             {children}
           </div>
         </main>

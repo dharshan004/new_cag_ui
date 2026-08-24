@@ -1,15 +1,16 @@
 import React from 'react';
 import AboutLayout from '@/app/(pages)/About/AboutLayout';
+import cagPhoto from '@/app/Assets/Images/cc8a1a5614f48c98f397dcafcf38e8f22843dc2a.png';
 
 export default function CagOfIndiaPage() {
   return (
-    <AboutLayout title="Comptroller & Auditor General of India Profile">
+    <AboutLayout title="CAG of India">
       <div className="cag-profile-card">
         <div className="cag-profile-card__decoration" aria-hidden="true">
           <img src="/assets/e7eaf35651b42d95ab09eb8fb981ccd61f9d01b2.svg" alt="" />
         </div>
         <div className="cag-profile-card__photo">
-          <img src="/assets/cc8a1a5614f48c98f397dcafcf38e8f22843dc2a.png" alt="Shri K Sanjay Murthy, Comptroller and Auditor General of India" />
+          <img src={cagPhoto.src} alt="Shri K Sanjay Murthy, Comptroller and Auditor General of India" />
           <div className="cag-profile-card__photo-overlay"></div>
         </div>
         <div className="cag-profile-card__info">

@@ -2,6 +2,7 @@
 
 import React, { useState, useMemo } from 'react';
 import Link from 'next/link';
+import pdfDocIcon from '@/app/Assets/Images/c4913da1b882a52fb7cb973a9d334b9abf2e253e.png';
 
 interface StateOption {
   name: string;
@@ -284,7 +285,7 @@ export default function AccountsPage() {
                 <li key={idx} className="year-row">
                   <span className="year-row__label">{doc.year}</span>
                   <div className="year-row__meta">
-                    <img src="/assets/c4913da1b882a52fb7cb973a9d334b9abf2e253e.png" alt="PDF document icon" className="year-row__icon" />
+                    <img src={pdfDocIcon.src} alt="PDF document icon" className="year-row__icon" />
                     <div className="year-row__file">
                       <span className="year-row__size">{doc.size}</span>
                       <a className="year-row__link" href={doc.href}>View PDF</a>

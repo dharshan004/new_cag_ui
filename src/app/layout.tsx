@@ -3,15 +3,22 @@ import './globals.css';
 import Header from '@/Components/Header/Header';
 import Footer from '@/Components/Footer/Footer';
 import Breadcrumb from '@/Components/Breadcrumb/Breadcrumb';
-import { Inter } from 'next/font/google';
+import { Noto_Sans, DM_Sans } from 'next/font/google';
 
 import { siteConfig } from '@/config/site';
 
-const inter = Inter({
+const notoSans = Noto_Sans({
   subsets: ['latin'],
   display: 'swap',
-  weight: ['300', '400', '500', '600', '700', '800'],
-  variable: '--font-inter',
+  weight: ['200', '300', '400', '500', '600', '700', '800', '900'],
+  variable: '--font-noto',
+});
+
+const dmSans = DM_Sans({
+  subsets: ['latin'],
+  display: 'swap',
+  weight: ['400', '500', '600'],
+  variable: '--font-dm',
 });
 
 export const metadata: Metadata = {
@@ -26,8 +33,8 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en" className={inter.variable}>
-      <body className={`${inter.className} min-h-screen flex flex-col justify-between`}>
+    <html lang="en" className={`${notoSans.variable} ${dmSans.variable}`}>
+      <body className={`${notoSans.className} min-h-screen flex flex-col justify-between`}>
         <div>
           <Header />
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">

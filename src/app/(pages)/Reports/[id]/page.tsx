@@ -3,6 +3,9 @@
 import React from 'react';
 import Link from 'next/link';
 import { dataManager } from '@/lib/dataManager';
+import imageBannerBg from '@/app/Assets/Images/28a53e7e7ea5da34ea37ebe754346af05af08abf.png';
+import imageBannerMain from '@/app/Assets/Images/4c1eaa81c93edbe02d6f7d5437565571dcec4b04.png';
+import imagePortrait from '@/app/Assets/Images/28f782be18b6cfdf23aa0c90ec681e3916b8d6c7.png';
 
 interface SubpageProps {
   params: Promise<{
@@ -54,8 +57,8 @@ export default function ReportDetailPage({ params }: SubpageProps) {
         <div className="report-body-wrap" style={{ width: '100%' }}>
           <article className="report-card" style={{ width: '100%', maxWidth: 'none' }}>
             <div className="report-card__banner">
-              <img src="/assets/28a53e7e7ea5da34ea37ebe754346af05af08abf.png" alt="" className="report-card__banner-img report-card__banner-img--bg" />
-              <img src="/assets/4c1eaa81c93edbe02d6f7d5437565571dcec4b04.png" alt="Group of women" className="report-card__banner-img report-card__banner-img--main" />
+              <img src={imageBannerBg.src} alt="" className="report-card__banner-img report-card__banner-img--bg" />
+              <img src={imageBannerMain.src} alt="Group of women" className="report-card__banner-img report-card__banner-img--main" />
             </div>
 
             <p className="report-card__caption">Report Documentation Panel Overview</p>
@@ -80,7 +83,7 @@ export default function ReportDetailPage({ params }: SubpageProps) {
 
                 <div className="report-card__portrait">
                   <div className="report-card__portrait-mask">
-                    <img src="/assets/28f782be18b6cfdf23aa0c90ec681e3916b8d6c7.png" alt="" className="report-card__portrait-img" />
+                    <img src={imagePortrait.src} alt="" className="report-card__portrait-img" />
                   </div>
                 </div>
               </div>

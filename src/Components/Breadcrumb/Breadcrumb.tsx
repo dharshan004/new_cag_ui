@@ -20,8 +20,8 @@ export default function Breadcrumb() {
   const paths = pathname.split('/').filter(Boolean);
 
   return (
-    <nav className="text-sm text-zinc-500 flex items-center gap-2">
-      <Link href="/" className="hover:text-[#0a3d30]">Home</Link>
+    <nav className="text-xs font-sans text-[#565656] flex items-center gap-2">
+      <Link href="/" className="text-[#565656] hover:text-[#0a3d30] font-normal">Home</Link>
       {paths.map((path, idx) => {
         const url = `/${paths.slice(0, idx + 1).join('/')}`;
         const resolvedUrl = ROUTE_MAPPINGS[url] || url;
@@ -30,11 +30,11 @@ export default function Breadcrumb() {
 
         return (
           <React.Fragment key={path}>
-            <span>/</span>
+            <span className="text-[#565656] font-normal">/</span>
             {isLast ? (
-              <span className="capitalize text-zinc-800 font-semibold">{displayName}</span>
+              <span className="capitalize text-[#2e2e31] font-semibold">{displayName}</span>
             ) : (
-              <Link href={resolvedUrl} className="hover:text-[#0a3d30] capitalize">{displayName}</Link>
+              <Link href={resolvedUrl} className="text-[#565656] hover:text-[#0a3d30] capitalize font-normal">{displayName}</Link>
             )}
           </React.Fragment>
         );

@@ -2,6 +2,7 @@
 
 import React, { useState, useEffect } from 'react';
 import { dataManager } from '@/lib/dataManager';
+import cagPhoto from '@/app/Assets/Images/cc8a1a5614f48c98f397dcafcf38e8f22843dc2a.png';
 
 export default function Details() {
   const [lang, setLang] = useState<'English' | 'हिन्दी'>('English');
@@ -20,7 +21,7 @@ export default function Details() {
   return (
     <section className="message-cag" data-node-id="356:17207" aria-label="Message from the Comptroller and Auditor General of India">
       <div className="message-cag__photo" data-node-id="356:17222">
-        <img src="/assets/cc8a1a5614f48c98f397dcafcf38e8f22843dc2a.png" alt="Shri K. Sanjay Murthy, Comptroller and Auditor General of India, signing documents" />
+        <img src={cagPhoto.src} alt="Shri K. Sanjay Murthy, Comptroller and Auditor General of India, signing documents" />
       </div>
       <div className="message-cag__card" data-node-id="356:17208">
         <div className="message-cag__divider" data-node-id="356:17209"></div>
