@@ -444,8 +444,8 @@ export default function OrganisationChartPage() {
           }}
         >
           {/* Vector User Avatar Icon */}
-          <div className="w-8 h-8 rounded-full bg-[#565656] flex items-center justify-center flex-shrink-0 text-white" aria-hidden="true">
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
+          <div className="w-8 h-8 rounded-full border border-[#D7D7D7] bg-white flex items-center justify-center flex-shrink-0" aria-hidden="true">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#686868" strokeWidth="1.5">
               <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" />
               <circle cx="12" cy="7" r="4" />
             </svg>
@@ -550,7 +550,7 @@ export default function OrganisationChartPage() {
               {/* Trunk Line Segment with right branch and right-pointing arrowhead */}
               <div className="hidden md:flex items-center justify-center relative w-[80px] self-stretch" aria-hidden="true">
                 <div className="absolute left-1/2 top-0 bottom-0 w-[2px] bg-[#D7D7D7] -translate-x-1/2" />
-                <div className="absolute left-1/2 w-[40px] h-[2px] bg-[#D7D7D7] ml-[1px]" />
+                <div className="absolute left-1/2 w-[40px] h-[2px] bg-[#D7D7D7] ml-[1px] top-1/2 -translate-y-1/2" />
                 
                 {/* Arrowhead pointing to Secretary card */}
                 <svg width="8" height="12" viewBox="0 0 8 12" className="absolute right-0 top-1/2 -translate-y-1/2" fill="none">
@@ -574,36 +574,39 @@ export default function OrganisationChartPage() {
                 className="flex flex-col md:flex-row items-center justify-center relative w-full gap-4 md:gap-0 z-10 hover:z-50"
               >
                 
-                {/* Left Side: Card or Spacer */}
-                <div className="w-full md:w-[356px] flex justify-end">
+                {/* Left Side: Card (shifted up using pb-12 on desktop) */}
+                <div className="w-full md:w-[356px] flex justify-end md:pb-12">
                   {row.left ? renderOfficerCardWithDetails(row.left, 'left') : <div className="hidden md:block w-[356px] h-1" aria-hidden="true" />}
                 </div>
 
-                {/* Central Trunk connector with left/right branches and arrowheads */}
+                {/* Central Trunk connector with staggered branches and arrowheads */}
                 <div className="hidden md:flex items-center justify-center relative w-[80px] self-stretch" aria-hidden="true">
+                  {/* Vertical center trunk */}
                   <div className="absolute left-1/2 top-0 bottom-0 w-[2px] bg-[#D7D7D7] -translate-x-1/2" />
                   
+                  {/* Left Staggered Connection Branch (Higher, top-[calc(50%-24px)]) */}
                   {row.left && (
                     <>
-                      <div className="absolute right-1/2 w-[40px] h-[2px] bg-[#D7D7D7] mr-[1px]" />
-                      <svg width="8" height="12" viewBox="0 0 8 12" className="absolute left-0 top-1/2 -translate-y-1/2" fill="none">
+                      <div className="absolute right-1/2 w-[40px] h-[2px] bg-[#D7D7D7] mr-[1px] top-[calc(50%-24px)] -translate-y-1/2" />
+                      <svg width="8" height="12" viewBox="0 0 8 12" className="absolute left-0 top-[calc(50%-24px)] -translate-y-1/2" fill="none">
                         <path d="M6 2 L2 6 L6 10" stroke="#D7D7D7" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" />
                       </svg>
                     </>
                   )}
                   
+                  {/* Right Staggered Connection Branch (Lower, top-[calc(50%+24px)]) */}
                   {row.right && (
                     <>
-                      <div className="absolute left-1/2 w-[40px] h-[2px] bg-[#D7D7D7] ml-[1px]" />
-                      <svg width="8" height="12" viewBox="0 0 8 12" className="absolute right-0 top-1/2 -translate-y-1/2" fill="none">
+                      <div className="absolute left-1/2 w-[40px] h-[2px] bg-[#D7D7D7] ml-[1px] top-[calc(50%+24px)] -translate-y-1/2" />
+                      <svg width="8" height="12" viewBox="0 0 8 12" className="absolute right-0 top-[calc(50%+24px)] -translate-y-1/2" fill="none">
                         <path d="M2 2 L6 6 L2 10" stroke="#D7D7D7" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" />
                       </svg>
                     </>
                   )}
                 </div>
 
-                {/* Right Side: Card or Spacer */}
-                <div className="w-full md:w-[356px] flex justify-start">
+                {/* Right Side: Card (shifted down using pt-12 on desktop) */}
+                <div className="w-full md:w-[356px] flex justify-start md:pt-12">
                   {row.right ? renderOfficerCardWithDetails(row.right, 'right') : <div className="hidden md:block w-[356px] h-1" aria-hidden="true" />}
                 </div>
 
