@@ -83,11 +83,11 @@ export default function Banner() {
     return () => window.removeEventListener('languageChange', handleLangChange);
   }, []);
 
-  // Automatic slide rotation every 3 seconds
+  // Automatic slide rotation every 4 seconds
   useEffect(() => {
     const timer = setInterval(() => {
       setSlideIndex((prev) => (prev + 1) % SLIDES.length);
-    }, 3000);
+    }, 4000);
     return () => clearInterval(timer);
   }, []);
 

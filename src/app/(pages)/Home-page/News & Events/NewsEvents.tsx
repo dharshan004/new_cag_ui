@@ -4,6 +4,16 @@ import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { dataManager, NewsItem } from '@/lib/dataManager';
 import defaultFeaturedNewsImage from '@/app/Assets/Images/e2c5a3b888a0623426c634ce2f2bee016b8fb5ab.png';
+import newsImage1 from '@/app/Assets/Images/4c1eaa81c93edbe02d6f7d5437565571dcec4b04.png';
+import newsImage2 from '@/app/Assets/Images/cc8a1a5614f48c98f397dcafcf38e8f22843dc2a.png';
+import newsImage3 from '@/app/Assets/Images/269d11ffce72c4343f0fa24955e0dc48a33d8255.png';
+
+const getNewsImage = (id: string) => {
+  if (id === 'news-1') return newsImage1.src;
+  if (id === 'news-2') return newsImage2.src;
+  if (id === 'news-3') return newsImage3.src;
+  return defaultFeaturedNewsImage.src;
+};
 
 const HINDI_NEWS_TRANSLATIONS: Record<string, { title: string; desc: string }> = {
   'news-1': {
@@ -164,7 +174,13 @@ export default function NewsEvents() {
                         : news.desc
                     })}
                   >
-                    <div className="trending-card__thumb" aria-hidden="true"></div>
+                    <div className="trending-card__thumb" aria-hidden="true" style={{ overflow: 'hidden' }}>
+                      <img 
+                        src={getNewsImage(news.id)} 
+                        alt="" 
+                        style={{ width: '100%', height: '100%', objectFit: 'cover', borderRadius: '8px' }} 
+                      />
+                    </div>
                     <div className="trending-card__details">
                       <span className="trending-card__date">{news.date}</span>
                       <h4 className="trending-card__title">{details.title}</h4>
@@ -186,7 +202,13 @@ export default function NewsEvents() {
                   href={href} 
                   className="trending-card cursor-pointer hover:bg-zinc-50 transition-colors block"
                 >
-                  <div className="trending-card__thumb" aria-hidden="true"></div>
+                  <div className="trending-card__thumb" aria-hidden="true" style={{ overflow: 'hidden' }}>
+                    <img 
+                      src={getNewsImage(news.id)} 
+                      alt="" 
+                      style={{ width: '100%', height: '100%', objectFit: 'cover', borderRadius: '8px' }} 
+                    />
+                  </div>
                   <div className="trending-card__details">
                     <span className="trending-card__date">{news.date}</span>
                     <h4 className="trending-card__title">{details.title}</h4>
