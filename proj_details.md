@@ -53,81 +53,83 @@ sequenceDiagram
 
 ---
 
-## 📂 Project Directory Structure
+## 📂 Project Directory Structure & Detailed Folder Usage
 
-Here is a detailed breakdown of every directory and file in the workspace to help you understand the role of each folder.
+Below is a comprehensive guide to every folder in the workspace, detailing what it contains, how it operates, and its role in the project.
 
-```text
-new CAG/
-├── proj_details.md                             # Onboarding guide (this file)
-└── cag_laravel/                                # Main Project Root
-    ├── app/                                    # CORE LARAVEL APPLICATION CODE
-    │   ├── Console/                            # Artisan Commands & Task schedules definitions
-    │   ├── Exceptions/                         # Global application exception handlers
-    │   ├── Models/                             # Eloquent Models matching pgsql tables
-    │   │   ├── AdminAuditLog.php               # Handles user actions audit trail logs
-    │   │   ├── Banner.php                      # Handles homepage carousel banners
-    │   │   ├── Page.php                        # CMS page models
-    │   │   └── ... (24 other models)           # Core domain models mapping all 27 tables
-    │   ├── Providers/                          # Service Providers registering Laravel modules
-    │   └── Http/                               # HTTP Request Handling Layers
-    │       ├── Controllers/                    # Controllers processing requests & returning responses
-    │       │   └── Api/                        # REST API controllers
-    │       │       ├── Admin/                  # Administrative CRUD & Upload endpoints
-    │       │       │   ├── AdminCrudController.php   # Central CRUD operations (CREATE/READ/UPDATE/DELETE)
-    │       │       │   ├── AdminOptionsController.php # Fetches values for form dropdown selectors
-    │       │       │   └── AdminUploadController.php  # Handles image/file uploads validation & storage
-    │       │       └── Public/                 # Public content endpoints (News, Reports, Former CAGs)
-    │       └── Middleware/                     # CORS filters, authentication guards, input trimming
-    │
-    ├── bootstrap/                              # Bootstrapping files (app.php configures routes, middleware)
-    ├── config/                                 # Configurations (database connections, app keys, cors settings)
-    ├── database/                               # DATABASE MIGRATIONS & SEEDING LAYERS
-    │   ├── migrations/                         # SQL Schema creation files
-    │   └── seeders/                            # Populates seed data (e.g., SampleDataSeeder, AdminUserSeeder)
-    │
-    ├── public/                                 # WEB ROOT FOR LARAVEL (Entry point: index.php)
-    │   └── storage -> ../storage/app/public     # Symlink allowing web browsers to retrieve uploaded files
-    │
-    ├── resources/                              # FRONTEND BLADE TEMPLATES (Used as developer fallbacks)
-    │   └── views/                              # Public Blade templates (reports/index.blade.php)
-    │
-    ├── routes/                                 # ROUTING REGISTRIES
-    │   ├── api.php                             # REST endpoints route mapping (/api/admin/*)
-    │   └── web.php                             # Default web routes mapping fallback templates
-    │
-    ├── storage/                                # INTERNAL SYSTEM STORAGE (Logs, Cache, Uploads)
-    │   ├── app/public/admin-uploads/           # Uploaded banner images and PDFs are stored here
-    │   └── logs/laravel.log                    # Target log file for debugging application crashes
-    │
-    └── frontend/                               # NEXT.JS FRONTEND APPLICATION ROOT
-        ├── public/                             # Public static assets folder
-        │   ├── admin-uploads/                  # Next.js static uploads mirror
-        │   └── assets/images/                  # Static design images (e.g., official cag-logo.png)
-        │
-        ├── src/                                # FRONTEND SOURCE ROOT
-        │   ├── app/                            # NEXT.JS APP ROUTER DIRECTORY
-        │   │   ├── (pages)/                    # Public citizens pages (Reports, Presence, etc.)
-        │   │   ├── admin/                      # Admin panel page routers
-        │   │   │   ├── dashboard/              # Home metrics dashboard page (page.tsx)
-        │   │   │   └── [module]/               # Dynamic dynamic routes for CRUD handlers
-        │   │   │       ├── page.tsx            # Dynamic list table
-        │   │   │       ├── add/page.tsx        # Dynamic add form
-        │   │   │       └── [id]/edit/page.tsx  # Dynamic edit form
-        │   │   ├── api/                        # Next.js route handlers acting as CORS proxies
-        │   │   │   ├── admin/crud/route.ts     # Proxies POST/PUT/DELETE requests to Laravel
-        │   │   │   └── presence/route.ts       # Proxies central office details requests
-        │   │   └── login/                      # Administration authentication login portal page
-        │   │
-        │   ├── Components/                     # REUSABLE FRONTEND REACT COMPONENTS
-        │   │   ├── admin/                      # Admin components (Sidebar, GenForm, DataTable, FileUpload)
-        │   │   ├── Header/                     # Public site navigation header
-        │   │   └── Footer/                     # Public site information footer
-        │   │
-        │   └── lib/                            # TYPESCRIPT LIBRARIES & HELPER SCRIPTS
-        │       ├── admin-modules.ts            # Declarative config map (forms layout & column types for all 27 tables)
-        │       └── db.ts                       # Browser-safe client database abstraction layer
-```
+### 1. 🖥️ Laravel Backend Folder Directory (`cag_laravel/`)
+
+*   **`app/` (Core PHP Application Logic)**:
+    *   **`app/Console/`**: Contains Artisan commands and scheduled background task definitions. If you need to write a CLI script (e.g. to import data or reset records), it belongs here.
+    *   **`app/Exceptions/`**: Global error handling. Intercepts database connection issues, validation errors, or application crashes and formats them into clean HTTP responses.
+    *   **`app/Http/Controllers/Api/Admin/`**: REST API endpoints for the administration panel:
+        *   [`AdminCrudController.php`](file:///c:/Users/yokes/OneDrive/Desktop/new%20CAG/cag_laravel/app/Http/Controllers/Api/Admin/AdminCrudController.php): A dynamic, catch-all CRUD controller. It uses schema metadata query helpers (`getTableColumns()`) to automatically insert, update, read, and delete records for any of the 27 database tables without requiring separate controllers for each.
+        *   [`AdminOptionsController.php`](file:///c:/Users/yokes/OneDrive/Desktop/new%20CAG/cag_laravel/app/Http/Controllers/Api/Admin/AdminOptionsController.php): Exposes endpoint routes to fetch data lists needed for form dropdown selectors (e.g., selecting parent pages, categories, or audit reports).
+        *   [`AdminUploadController.php`](file:///c:/Users/yokes/OneDrive/Desktop/new%20CAG/cag_laravel/app/Http/Controllers/Api/Admin/AdminUploadController.php): Validates, stores, and registers uploaded images, icons, or PDF reports in the server storage.
+        *   [`AuthController.php`](file:///c:/Users/yokes/OneDrive/Desktop/new%20CAG/cag_laravel/app/Http/Controllers/Api/Admin/AuthController.php): Verifies credentials, handles secure Bcrypt password checking, and logs entry details inside the audit trail log database.
+    *   **`app/Http/Controllers/Api/Public/`**: Contains controllers handling read-only queries from the citizen-facing public homepage (e.g., retrieving published audit reports, news updates, career tenders, etc.).
+    *   **`app/Http/Middleware/`**: Handles HTTP filtering. Configured with CORS filters (allowing Next.js port 3000 to talk to port 8000), authentication checking, and trimming request payloads.
+    *   **`app/Models/`**: Eloquent models mapping table schemas to database queries:
+        *   [`AdminUser.php`](file:///c:/Users/yokes/OneDrive/Desktop/new%20CAG/cag_laravel/app/Models/AdminUser.php): Maps the administrator accounts table.
+        *   [`AdminAuditLog.php`](file:///c:/Users/yokes/OneDrive/Desktop/new%20CAG/cag_laravel/app/Models/AdminAuditLog.php): Captures administrative actions (User, Operation, Timestamp, Target Table, Modified Data) to maintain a complete security log.
+        *   `Page.php`, `Report.php`, `Tender.php`, etc.: Model schemas for the 27 CMS tables.
+    *   **`app/Providers/`**: System boot registers. Configures routing paths, validation overrides, and database bindings.
+
+*   **`config/` (System Configurations)**:
+    *   `database.php`: Handles PostgreSQL connection host, schema definitions, and credentials.
+    *   `cors.php`: Crucial configuration file allowing browser cross-origin requests from the Next.js frontend port.
+    *   `filesystems.php`: Manages local disks, upload sizes, and symlink mappings.
+
+*   **`database/` (Database Migrations & Seeders)**:
+    *   **`database/migrations/`**: Contains the SQL blueprint scripts used to generate the PostgreSQL tables, indexes, and primary/foreign keys in the `cag_new` schema.
+    *   **`database/seeders/`**: Populates the database with default records:
+        *   [`AdminUserSeeder.php`](file:///c:/Users/yokes/OneDrive/Desktop/new%20CAG/cag_laravel/database/seeders/AdminUserSeeder.php): Sets up the default `admin` / `admin` login credentials.
+        *   `SampleDataSeeder.php`: Populates test data for audit reports, career postings, and news.
+
+*   **`resources/views/` (Legacy Web Views)**:
+    *   Contains fallback HTML/PHP Blade templates (served on port 8000). The main user-facing homepage is now handled by Next.js, but these remain as legacy views.
+
+*   **`routes/` (URL Routing Registries)**:
+    *   `api.php`: Maps all backend URL paths (e.g. `/api/admin/crud`, `/api/admin/login`) to the appropriate API controller actions.
+    *   `web.php`: Registers fallback page routing for port 8000.
+
+*   **`storage/app/public/admin-uploads/` (Uploaded Files)**:
+    *   This is the actual server folder where files uploaded through the admin forms (like PDF documents and banner images) are saved permanently.
+
+---
+
+### 2. ⚡ Next.js Frontend Folder Directory (`cag_laravel/frontend/`)
+
+*   **`public/` (Static Frontend Assets)**:
+    *   **`public/assets/images/`**: Holds graphics like the official CAG maroon logo emblem ([`cag-logo.png`](file:///c:/Users/yokes/OneDrive/Desktop/new%20CAG/cag_laravel/frontend/public/assets/images/cag-logo.png)) displayed on the login card and headers.
+    *   **`public/admin-uploads/`**: Serves as a local dev path matching the backend uploads directory for browser loading.
+
+*   **`src/app/` (Next.js App Router Controllers & Pages)**:
+    *   **`src/app/(pages)/`**: Public citizen pages:
+        *   `Home-page/`: Homepage grids, news feeds, and layout banners.
+        *   `Reports/`: Browse audit reports.
+        *   `About/`, `Tenders/`, `Recruitment/`: Static and dynamic sub-pages.
+    *   **`src/app/admin/` (Administration UI Page Controllers)**:
+        *   `dashboard/`: Home admin screen displaying database row metrics and recent audit logs.
+        *   `[module]/page.tsx`: Standard listing view. Loads table layouts dynamically depending on which module URL slug is opened.
+        *   `[module]/add/page.tsx`: Layout representing the new record creation screen.
+        *   `[module]/[id]/edit/page.tsx`: Layout representing the record update form.
+        *   `[module]/[id]/page.tsx`: Detail page rendering all table attributes, including document previews.
+    *   **`src/app/api/` (Next.js Node Server Proxies)**:
+        *   `api/admin/crud/route.ts`: Node-side API handler that proxies form submissions (saving, editing, deleting) to the Laravel backend port.
+        *   `api/admin/upload/route.ts`: Proxies file upload binaries securely.
+    *   **`src/app/(auth)/login/`**: Page displaying the maroon themed admin sign-in form.
+
+*   **`src/Components/admin/` (Interactive Admin Widgets)**:
+    *   [`GenForm.tsx`](file:///c:/Users/yokes/OneDrive/Desktop/new%20CAG/cag_laravel/frontend/src/Components/admin/GenForm.tsx): The form generator. Interprets schema data types and dynamically renders inputs (text, textareas, rich-text WYSIWYG editor, dates, checkbox toggles, or drop-downs).
+    *   [`DataTable.tsx`](file:///c:/Users/yokes/OneDrive/Desktop/new%20CAG/cag_laravel/frontend/src/Components/admin/DataTable.tsx): Renders tabular records, search bars, pagination, and action icons.
+    *   [`FileUpload.tsx`](file:///c:/Users/yokes/OneDrive/Desktop/new%20CAG/cag_laravel/frontend/src/Components/admin/FileUpload.tsx): Integrated upload widget showing selected filenames, icons, and inline previews.
+    *   [`ListClientHelpers.tsx`](file:///c:/Users/yokes/OneDrive/Desktop/new%20CAG/cag_laravel/frontend/src/Components/admin/ListClientHelpers.tsx): Contains standard client actions, including [`FilePreviewAction`](file:///c:/Users/yokes/OneDrive/Desktop/new%20CAG/cag_laravel/frontend/src/Components/admin/ListClientHelpers.tsx#L96-L168) which displays images or opens PDF iframe overlays with a direct download button.
+
+*   **`src/lib/` (Libraries & Core Constants)**:
+    *   [`admin-modules.ts`](file:///c:/Users/yokes/OneDrive/Desktop/new%20CAG/cag_laravel/frontend/src/lib/admin-modules.ts): **The Central Schema Mapping Configuration**. Every table name, form input type, field label, select options fetch query, and table column is configured in this map.
+    *   [`db.ts`](file:///c:/Users/yokes/OneDrive/Desktop/new%20CAG/cag_laravel/frontend/src/lib/db.ts): Connects to the database directly for specific server-side Next.js operations.
+    *   [`auth.ts`](file:///c:/Users/yokes/OneDrive/Desktop/new%20CAG/cag_laravel/frontend/src/lib/auth.ts) & [`auth.config.ts`](file:///c:/Users/yokes/OneDrive/Desktop/new%20CAG/cag_laravel/frontend/src/lib/auth.config.ts): Sets up NextAuth credential providers, route guards, and session expiration times.
 
 ---
 
