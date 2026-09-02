@@ -82,10 +82,16 @@ function StateOfficesPageContent() {
                         : '/states/andhra-pradesh';
 
                       return (
-                        <Link
+                        <a
                           key={idx}
                           href={targetUrl}
-                          className="flex flex-row items-center justify-between gap-3 w-full group text-decoration-none"
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          onClick={(e) => {
+                            e.preventDefault();
+                            window.open(targetUrl, '_blank');
+                          }}
+                          className="flex flex-row items-center justify-between gap-3 w-full group text-decoration-none cursor-pointer"
                         >
                           <span className="font-normal text-[14px] leading-[19px] text-[#565656] group-hover:text-[#751639] transition-colors text-left flex-1 min-w-0">
                             {sub.label}
@@ -95,7 +101,7 @@ function StateOfficesPageContent() {
                             <polyline points="15 3 21 3 21 9" />
                             <line x1="10" y1="14" x2="21" y2="3" />
                           </svg>
-                        </Link>
+                        </a>
                       );
                     })}
                   </div>
