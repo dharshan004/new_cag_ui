@@ -71,6 +71,8 @@ export default function Header() {
           <Link href="/Resources" className="utility-link">{isHindi ? 'ज्ञान केंद्र' : 'Knowledge Hub'}</Link>
           <Link 
             href="/admin" 
+            target="_blank"
+            rel="noopener noreferrer"
             className="utility-link font-semibold hover:underline"
           >
             {isHindi ? 'कर्मचारी पोर्टल (Admin)' : 'Employee Portal'}
