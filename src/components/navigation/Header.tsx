@@ -74,12 +74,27 @@ export default function Header() {
             target="_blank"
             rel="noopener noreferrer"
             className="utility-link font-semibold hover:underline"
+            onClick={(e) => {
+              e.preventDefault();
+              window.open('/admin', '_blank');
+            }}
           >
             {isHindi ? 'कर्मचारी पोर्टल' : 'Employee Portal'}
           </a>
           <Link href="/#news-events-heading" className="utility-link">{isHindi ? 'समाचार एवं घटनाएँ' : 'News & Events'}</Link>
           <Link href="/About/Index-Menu-About/Global-relations/International%20Relations%20Wing" className="utility-link">{isHindi ? 'संपर्क' : 'Contact'}</Link>
-          <a href="/admin" target="_blank" rel="noopener noreferrer" className="utility-link font-semibold text-[#751639] hover:underline">{isHindi ? 'एडमिन पोर्टल' : 'Admin Portal'}</a>
+          <a 
+            href="/admin" 
+            target="_blank" 
+            rel="noopener noreferrer" 
+            className="utility-link font-semibold text-[#751639] hover:underline"
+            onClick={(e) => {
+              e.preventDefault();
+              window.open('/admin', '_blank');
+            }}
+          >
+            {isHindi ? 'एडमिन पोर्टल' : 'Admin Portal'}
+          </a>
         </nav>
         <div className="accessibility">
           <button 

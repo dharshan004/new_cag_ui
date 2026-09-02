@@ -74,6 +74,10 @@ export default function Header() {
             target="_blank"
             rel="noopener noreferrer"
             className="utility-link font-semibold hover:underline"
+            onClick={(e) => {
+              e.preventDefault();
+              window.open('/admin', '_blank');
+            }}
           >
             {isHindi ? 'कर्मचारी पोर्टल (Admin)' : 'Employee Portal'}
           </a>
