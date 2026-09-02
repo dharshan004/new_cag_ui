@@ -82,8 +82,8 @@ export const DEFAULT_STATE_OFFICES: StateOfficeCard[] = [
     id: 'arunachal-pradesh',
     name: 'Arunachal Pradesh',
     nameHindi: 'अरुणाचल प्रदेश',
-    auditDetails: [{ label: 'AG (Audit), Itanagar', url: 'https://cag.gov.in/ag/arunachal-pradesh/en' }],
-    aeDetails: [{ label: 'AG (A&E), Itanagar', url: 'https://cag.gov.in/ag/arunachal-pradesh/en' }]
+    auditDetails: [{ label: 'AG (Audit), Itanagar', url: '/states/andhra-pradesh' }],
+    aeDetails: [{ label: 'AG (A&E), Itanagar', url: '/states/andhra-pradesh' }]
   },
   {
     id: 'assam',

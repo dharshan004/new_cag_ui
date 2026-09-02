@@ -77,8 +77,9 @@ function StateOfficesPageContent() {
                     </h3>
 
                     {detailsList.map((sub, idx) => {
-                      const isExternal = sub.url && (sub.url.startsWith('http://') || sub.url.startsWith('https://')) && !sub.url.includes('localhost');
-                      const targetUrl = isExternal ? `/Reports?query=${encodeURIComponent(item.name)}` : (sub.url || `/Reports?query=${encodeURIComponent(item.name)}`);
+                      const targetUrl = (sub.url && sub.url.startsWith('/states/')) 
+                        ? sub.url 
+                        : '/states/andhra-pradesh';
 
                       return (
                         <Link
