@@ -855,11 +855,7 @@ export const dataManager = {
         return DEFAULT_REPORTS;
       }
       const parsed = JSON.parse(stored);
-      if (!Array.isArray(parsed) || parsed.length === 0) {
-        localStorage.setItem('cag_reports', JSON.stringify(DEFAULT_REPORTS));
-        return DEFAULT_REPORTS;
-      }
-      return parsed;
+      return Array.isArray(parsed) ? parsed : DEFAULT_REPORTS;
     } catch (e) {
       console.error('Error reading reports from localStorage:', e);
       return DEFAULT_REPORTS;
@@ -896,11 +892,7 @@ export const dataManager = {
         return DEFAULT_OFFICES;
       }
       const parsed = JSON.parse(stored);
-      if (!Array.isArray(parsed) || parsed.length < 5) {
-        localStorage.setItem('cag_offices', JSON.stringify(DEFAULT_OFFICES));
-        return DEFAULT_OFFICES;
-      }
-      return parsed;
+      return Array.isArray(parsed) ? parsed : DEFAULT_OFFICES;
     } catch (e) {
       console.error('Error reading offices from localStorage:', e);
       return DEFAULT_OFFICES;
@@ -917,6 +909,7 @@ export const dataManager = {
       offices.push(office);
     }
     localStorage.setItem('cag_offices', JSON.stringify(offices));
+    window.dispatchEvent(new Event('officesChange'));
   },
 
   deleteOffice(id: string) {
@@ -924,6 +917,7 @@ export const dataManager = {
     const offices = this.getOffices();
     const filtered = offices.filter(o => o.id !== id);
     localStorage.setItem('cag_offices', JSON.stringify(filtered));
+    window.dispatchEvent(new Event('officesChange'));
   },
 
   getNews(): NewsItem[] {
@@ -972,7 +966,7 @@ export const dataManager = {
         return DEFAULT_FORMER_CAGS;
       }
       const parsed = JSON.parse(stored);
-      return Array.isArray(parsed) && parsed.length > 0 ? parsed : DEFAULT_FORMER_CAGS;
+      return Array.isArray(parsed) ? parsed : DEFAULT_FORMER_CAGS;
     } catch (e) {
       return DEFAULT_FORMER_CAGS;
     }
@@ -1004,7 +998,7 @@ export const dataManager = {
         return DEFAULT_GLOBAL_RELATIONS;
       }
       const parsed = JSON.parse(stored);
-      return Array.isArray(parsed) && parsed.length > 0 ? parsed : DEFAULT_GLOBAL_RELATIONS;
+      return Array.isArray(parsed) ? parsed : DEFAULT_GLOBAL_RELATIONS;
     } catch (e) {
       return DEFAULT_GLOBAL_RELATIONS;
     }
