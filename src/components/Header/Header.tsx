@@ -69,14 +69,14 @@ export default function Header() {
       <div className="utility-bar" data-node-id="115:2156">
         <nav className="utility-links" aria-label="Utility links">
           <Link href="/Resources" className="utility-link">{isHindi ? 'ज्ञान केंद्र' : 'Knowledge Hub'}</Link>
-          <Link 
+          <a 
             href="/admin" 
             target="_blank"
             rel="noopener noreferrer"
             className="utility-link font-semibold hover:underline"
           >
             {isHindi ? 'कर्मचारी पोर्टल (Admin)' : 'Employee Portal'}
-          </Link>
+          </a>
           <Link href="/#news-events-heading" className="utility-link">{isHindi ? 'समाचार एवं घटनाएँ' : 'News & Events'}</Link>
           <Link href="/About/Index-Menu-About/Global-relations/International%20Relations%20Wing" className="utility-link">{isHindi ? 'संपर्क' : 'Contact'}</Link>
         </nav>
