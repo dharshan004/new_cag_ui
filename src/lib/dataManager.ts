@@ -75,8 +75,8 @@ export const DEFAULT_STATE_OFFICES: StateOfficeCard[] = [
     id: 'andhra-pradesh',
     name: 'Andhra Pradesh',
     nameHindi: 'आंध्र प्रदेश',
-    auditDetails: [{ label: 'PAG (Audit), Vijayawada', url: 'https://cag.gov.in/ag/andhra-pradesh/en' }],
-    aeDetails: [{ label: 'PAG (A&E), Vijayawada', url: 'https://cag.gov.in/ag/andhra-pradesh/en' }]
+    auditDetails: [{ label: 'PAG (Audit), Vijayawada', url: '/states/andhra-pradesh' }],
+    aeDetails: [{ label: 'PAG (A&E), Vijayawada', url: '/states/andhra-pradesh' }]
   },
   {
     id: 'arunachal-pradesh',
