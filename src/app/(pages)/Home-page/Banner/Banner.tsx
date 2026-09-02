@@ -95,8 +95,9 @@ export default function Banner() {
     };
   }, []);
 
+  const activeBanners = customBanners.filter(b => b.is_active !== false);
   const activeSlides = customBanners.length > 0
-    ? customBanners.map(b => ({
+    ? activeBanners.map(b => ({
         image: b.image_url || image1.src,
         engLine1: b.title_en?.split(' ')[0] || 'Ensuring',
         engLine2: b.title_en?.split(' ').slice(1, -1).join(' ') || 'Transparency, Integrity &',

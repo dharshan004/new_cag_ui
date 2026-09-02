@@ -754,12 +754,12 @@ export const dataManager = {
     if (typeof window === 'undefined') return DEFAULT_BANNERS;
     try {
       const stored = localStorage.getItem('cag_banners');
-      if (!stored) {
+      if (!stored || stored === 'null' || stored === 'undefined') {
         localStorage.setItem('cag_banners', JSON.stringify(DEFAULT_BANNERS));
         return DEFAULT_BANNERS;
       }
       const parsed = JSON.parse(stored);
-      return Array.isArray(parsed) && parsed.length >= 4 ? parsed : DEFAULT_BANNERS;
+      return Array.isArray(parsed) ? parsed : DEFAULT_BANNERS;
     } catch (e) {
       return DEFAULT_BANNERS;
     }
