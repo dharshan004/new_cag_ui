@@ -14,21 +14,50 @@ export default function AndhraPradeshSubsitePage() {
 
   return (
     <div className="min-h-screen bg-white font-['Noto_Sans',sans-serif] text-[#2A2A2A] overflow-x-hidden">
-      {/* 1. Subsite Top Header Bar */}
-      <header className="w-full">
-        {/* Top Dark Green Sub-header */}
-        <div className="bg-[#0A3D30] text-white py-2 px-4 md:px-16 flex flex-wrap justify-between items-center text-[11px] border-b border-[#082f25]">
-          <div className="flex items-center gap-2 font-medium tracking-wide">
-            <span>Principal Accountant General (A&E), Andhra Pradesh, Vijayawada</span>
+      {/* 1. Subsite Top Header Bar (Matching Picture 2 Specs) */}
+      <header className="w-full shadow-sm relative z-30">
+        {/* Top Dark Green Bar */}
+        <div className="bg-[#0A3D30] text-white py-2 px-6 md:px-16 flex flex-wrap justify-between items-center text-xs">
+          {/* Left: Crest Emblem & Title */}
+          <div className="flex items-center gap-3">
+            <img 
+              src="/assets/12e6d254adf33bbd46537f45eb8f9ecd50a15e55.png" 
+              alt="CAG Emblem" 
+              className="h-7 w-auto object-contain brightness-200" 
+            />
+            <span className="font-medium text-xs tracking-wide text-white/95">
+              Principal Accountant General (A&E), Andhra Pradesh, Vijayawada
+            </span>
           </div>
-          <div className="flex items-center gap-6 text-[10px] text-zinc-200">
+
+          {/* Right: Utility Links */}
+          <div className="flex items-center gap-5 text-[11px] font-normal text-white/90">
             <Link href="/Resources" className="hover:underline transition-colors">Knowledge Hub</Link>
+            <a 
+              href="/admin" 
+              target="_blank" 
+              rel="noopener noreferrer" 
+              className="hover:underline font-semibold text-white"
+              onClick={(e) => {
+                e.preventDefault();
+                window.open('/admin', '_blank');
+              }}
+            >
+              Employee Portal
+            </a>
             <Link href="/#news-events-heading" className="hover:underline transition-colors">News & Events</Link>
-            <Link href="/About/Index-Menu-About/Global-relations/International%20Relations%20Wing" className="hover:underline transition-colors">Contact Us</Link>
-            <a href="/admin" target="_blank" rel="noopener noreferrer" className="hover:underline font-bold text-[#FFCE7B]">Employee Portal</a>
+            <Link href="/About/Index-Menu-About/Global-relations/International%20Relations%20Wing" className="hover:underline transition-colors">Contact</Link>
+            
+            {/* Accessibility Button */}
+            <div className="flex items-center border border-white/40 rounded px-1.5 py-0.5 text-[10px] gap-1 cursor-pointer hover:bg-white/10">
+              <span>A</span>
+              <span className="text-[8px]">▼</span>
+            </div>
+
+            {/* Language Selector */}
             <button 
               onClick={toggleLanguage}
-              className="bg-transparent border-none text-white cursor-pointer hover:underline text-[10px] flex items-center gap-1 font-semibold"
+              className="bg-transparent border-none text-white cursor-pointer hover:underline text-[11px] flex items-center gap-1 font-medium"
             >
               <span>{lang}</span>
               <span className="text-[8px]">▼</span>
@@ -37,57 +66,51 @@ export default function AndhraPradeshSubsitePage() {
         </div>
 
         {/* Main Header Menu Bar */}
-        <div className="bg-white border-b border-[#D7D7D7] py-3 px-4 md:px-16 flex justify-between items-center relative z-20">
-          {/* Logo & Crest */}
-          <div className="flex items-center gap-4">
-            <Link href="/" className="flex items-center gap-3 group">
-              <img 
-                src="/assets/12e6d254adf33bbd46537f45eb8f9ecd50a15e55.png" 
-                alt="CAG Crest Logo" 
-                className="h-12 w-auto object-contain transition-transform group-hover:scale-105" 
-              />
-              <div className="flex flex-col">
-                <span className="font-bold text-[#0A3D30] text-base leading-tight">CAG Andhra Pradesh</span>
-                <span className="text-[11px] text-zinc-500 font-normal">Principal Accountant General (A&E)</span>
-              </div>
-            </Link>
-          </div>
+        <div className="bg-white border-b border-[#D7D7D7] py-3.5 px-6 md:px-16 flex justify-between items-center">
+          {/* Left: CAG Crest Logo */}
+          <Link href="/" className="flex items-center gap-3 shrink-0">
+            <img 
+              src="/assets/12e6d254adf33bbd46537f45eb8f9ecd50a15e55.png" 
+              alt="CAG Crest Logo" 
+              className="h-12 w-auto object-contain" 
+            />
+          </Link>
 
-          {/* Navigation Links */}
-          <nav className="hidden lg:flex items-center gap-4 text-[13px] font-medium text-[#4D4D4D]">
-            <div className="relative group cursor-pointer py-1 flex items-center gap-1 hover:text-[#0A3D30]">
+          {/* Center: Navigation Links */}
+          <nav className="hidden lg:flex items-center gap-6 text-[14px] font-normal text-[#4D4D4D]">
+            <div className="relative group cursor-pointer py-1 flex items-center gap-1.5 hover:text-[#0A3D30] transition-colors">
               <span>About Us</span>
-              <span className="text-[9px]">▼</span>
+              <span className="text-[9px] text-zinc-400">▼</span>
             </div>
-            <div className="relative group cursor-pointer py-1 flex items-center gap-1 hover:text-[#0A3D30]">
+            <div className="relative group cursor-pointer py-1 flex items-center gap-1.5 text-[#0A3D30] font-semibold">
               <span>State Accounts</span>
-              <span className="text-[9px]">▼</span>
+              <span className="text-[9px] text-[#0A3D30]">▼</span>
             </div>
-            <div className="relative group cursor-pointer py-1 flex items-center gap-1 hover:text-[#0A3D30]">
+            <div className="relative group cursor-pointer py-1 flex items-center gap-1.5 hover:text-[#0A3D30] transition-colors">
               <span>GPF</span>
-              <span className="text-[9px]">▼</span>
+              <span className="text-[9px] text-zinc-400">▼</span>
             </div>
-            <div className="relative group cursor-pointer py-1 flex items-center gap-1 hover:text-[#0A3D30]">
+            <div className="relative group cursor-pointer py-1 flex items-center gap-1.5 hover:text-[#0A3D30] transition-colors">
               <span>Pension</span>
-              <span className="text-[9px]">▼</span>
+              <span className="text-[9px] text-zinc-400">▼</span>
             </div>
-            <div className="relative group cursor-pointer py-1 flex items-center gap-1 hover:text-[#0A3D30]">
+            <div className="relative group cursor-pointer py-1 flex items-center gap-1.5 hover:text-[#0A3D30] transition-colors">
               <span>Employee Corner</span>
-              <span className="text-[9px]">▼</span>
+              <span className="text-[9px] text-zinc-400">▼</span>
             </div>
-            <div className="relative group cursor-pointer py-1 flex items-center gap-1 hover:text-[#0A3D30]">
+            <div className="relative group cursor-pointer py-1 flex items-center gap-1.5 hover:text-[#0A3D30] transition-colors">
               <span>RTI</span>
-              <span className="text-[9px]">▼</span>
+              <span className="text-[9px] text-zinc-400">▼</span>
             </div>
-            <Link href="/Resources" className="hover:text-[#0A3D30]">Citizen Charter</Link>
-            <div className="relative group cursor-pointer py-1 flex items-center gap-1 hover:text-[#0A3D30]">
+            <Link href="/Resources" className="hover:text-[#0A3D30] transition-colors">Citizen Charter</Link>
+            <div className="relative group cursor-pointer py-1 flex items-center gap-1.5 hover:text-[#0A3D30] transition-colors">
               <span>Contact Us</span>
-              <span className="text-[9px]">▼</span>
+              <span className="text-[9px] text-zinc-400">▼</span>
             </div>
           </nav>
 
-          {/* Search Box */}
-          <div className="flex items-center border border-[#D7D7D7] rounded-md px-3 py-1.5 bg-[#FBFBFB] w-48 focus-within:border-[#0A3D30] transition-colors">
+          {/* Right: Search Box */}
+          <div className="flex items-center border border-[#D7D7D7] rounded-md px-3 py-1.5 bg-white w-52 focus-within:border-[#0A3D30] transition-colors">
             <input 
               type="text"
               placeholder="Search..." 
@@ -95,7 +118,7 @@ export default function AndhraPradeshSubsitePage() {
               onChange={(e) => setSearchQuery(e.target.value)}
               className="w-full bg-transparent border-none outline-none text-xs text-[#2A2A2A] placeholder:text-zinc-400"
             />
-            <svg className="w-4 h-4 text-zinc-500 shrink-0 cursor-pointer" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <svg className="w-4 h-4 text-zinc-400 shrink-0 cursor-pointer hover:text-[#0A3D30]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
             </svg>
           </div>

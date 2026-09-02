@@ -9,9 +9,10 @@ import Breadcrumb from '@/Components/Breadcrumb/Breadcrumb';
 export default function RootLayoutWrapper({ children }: { children: React.ReactNode }) {
   const pathname = usePathname();
   const isAdmin = pathname?.startsWith('/admin');
+  const isStateSubsite = pathname?.startsWith('/states');
 
-  if (isAdmin) {
-    return <main className="min-h-screen bg-[#ecf0f5]">{children}</main>;
+  if (isAdmin || isStateSubsite) {
+    return <main className="min-h-screen bg-white">{children}</main>;
   }
 
   return (
