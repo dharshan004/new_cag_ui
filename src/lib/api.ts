@@ -112,5 +112,8 @@ export const api = {
   },
   getPageContent: async (slug: string) => {
     return fetchJson<{ title: string; content_html: string }>(`/api/pages/${slug}`);
+  },
+  getStateSubsite: async (slug: string) => {
+    return fetchJson<any>(`/api/states/${slug}`);
   }
 };

@@ -1,11 +1,20 @@
 'use client';
 
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
+import { api } from '@/lib/api';
 
 export default function AndhraPradeshSubsitePage() {
   const [lang, setLang] = useState<'English' | 'हिन्दी'>('English');
   const [searchQuery, setSearchQuery] = useState('');
+  const [subsiteData, setSubsiteData] = useState<any>(null);
+
+  useEffect(() => {
+    api.getStateSubsite('andhra-pradesh').then((data) => {
+      if (data) setSubsiteData(data);
+    });
+  }, []);
+
   const isHindi = lang === 'हिन्दी';
 
   const toggleLanguage = () => {
