@@ -507,6 +507,7 @@ const DEFAULT_REPORTS: ReportItem[] = [
 ];
 
 const DEFAULT_OFFICES: Office[] = [
+  // State Offices
   {
     id: 'st-1',
     state: 'Tamil Nadu',
@@ -528,6 +529,131 @@ const DEFAULT_OFFICES: Office[] = [
     lat: 18.9322,
     lng: 72.8264,
     type: 'state'
+  },
+  
+  // Central Audit Offices
+  {
+    id: 'c-def',
+    state: 'Delhi',
+    name: 'Office of the Director General of Audit (Defense Services), New Delhi',
+    address: 'L-II Block, Brassey Avenue, New Delhi - 110001',
+    phone: '+91-11-23092528',
+    email: 'pdaDefense@cag.gov.in',
+    lat: 28.6139,
+    lng: 77.2090,
+    type: 'central'
+  },
+  {
+    id: 'c-rail',
+    state: 'Delhi',
+    name: 'Office of the Director General of Audit (Railways), New Delhi',
+    address: 'Rail Bhavan, Raisina Road, New Delhi - 110001',
+    phone: '+91-11-23383568',
+    email: 'pdarailways@cag.gov.in',
+    lat: 28.6180,
+    lng: 77.2140,
+    type: 'central'
+  },
+  {
+    id: 'c-over',
+    state: 'London',
+    name: 'Office of the Director General of Audit, London (Overseas Office)',
+    address: 'High Commission of India, India House, Aldwych, London WC2B 4NA',
+    phone: '+44-20-76323000',
+    email: 'london-audit@cag.gov.in',
+    lat: 51.5126,
+    lng: -0.1182,
+    type: 'central'
+  },
+  {
+    id: 'c-1',
+    state: 'Delhi',
+    name: 'Office of the Director General of Audit (Postal & Telecommunication), Delhi',
+    address: 'Sham Nath Marg, Near Civil Lines Metro Station, Delhi - 110054',
+    phone: '+91-11-23812852',
+    email: 'pda.p&t@cag.gov.in',
+    lat: 28.6780,
+    lng: 77.2250,
+    type: 'central'
+  },
+
+  // Training Institutes
+  {
+    id: 'tr-reg-1',
+    state: 'Karnataka',
+    name: 'Regional Training Institute (RTI), Regional Capacity Building Centre, Bengaluru',
+    address: 'Basava Samithi Bhavan, Sri Basaveshwara Road, Bengaluru, Karnataka - 560001',
+    phone: '+91-80-22262509',
+    email: 'rtibengaluru@cag.gov.in',
+    lat: 12.9716,
+    lng: 77.5946,
+    type: 'training'
+  },
+  {
+    id: 'tr-reg-2',
+    state: 'Maharashtra',
+    name: 'Regional Training Centre (RTC), Regional Capacity Building Centre, Mumbai',
+    address: 'Pratishtha Bhavan, 101 M.K. Road, Marine Lines, Mumbai - 400020',
+    phone: '+91-22-22031940',
+    email: 'rtcmumbai@cag.gov.in',
+    lat: 18.9430,
+    lng: 72.8240,
+    type: 'training'
+  },
+  {
+    id: 'tr-1',
+    state: 'Rajasthan',
+    name: 'International Centre for Environment Audit and Sustainable Development (iCED), Jaipur',
+    address: 'Kant Kalwar, RIICO Industrial Area, NH-11C, Jaipur, Rajasthan - 303002',
+    phone: '+91-141-2586700',
+    email: 'iced@cag.gov.in',
+    lat: 26.9124,
+    lng: 75.7873,
+    type: 'training'
+  },
+  {
+    id: 'tr-2',
+    state: 'Uttar Pradesh',
+    name: 'International Centre for Information Systems and Audit (iCISA), Noida',
+    address: 'A-52, Sector 62, Institutional Area, Noida, Uttar Pradesh - 201309',
+    phone: '+91-120-2400050',
+    email: 'icisa@cag.gov.in',
+    lat: 28.6273,
+    lng: 77.3725,
+    type: 'training'
+  },
+  {
+    id: 'tr-naaa',
+    state: 'Himachal Pradesh',
+    name: 'National Academy of Audit & Accounts (NAAA), Shimla',
+    address: 'Chaura Maidan, Shimla, Himachal Pradesh - 171004',
+    phone: '+91-177-2803206',
+    email: 'naaa@cag.gov.in',
+    lat: 31.1048,
+    lng: 77.1734,
+    type: 'training'
+  },
+  {
+    id: 'tr-cdma',
+    state: 'Delhi',
+    name: 'Centre for Data Management and Analytics (CDMA), New Delhi',
+    address: 'CAG Annex Building, 10 Bahadur Shah Zafar Marg, New Delhi - 110002',
+    phone: '+91-11-23235790',
+    email: 'cdma@cag.gov.in',
+    lat: 28.6310,
+    lng: 77.2410,
+    type: 'training'
+  },
+  {
+    id: 'tr-ical',
+    state: 'Kerala',
+    name: 'International Centre for Audit of Local Governance (iCAL), Kozhikode',
+    address: 'Kozhikode, Kerala - 673001',
+    phone: '+91-495-2300120',
+    email: 'ical@cag.gov.in',
+    lat: 11.2588,
+    lng: 75.7804,
+    type: 'training'
   }
 ];
 
@@ -770,6 +896,10 @@ export const dataManager = {
         return DEFAULT_OFFICES;
       }
       const parsed = JSON.parse(stored);
+      if (!Array.isArray(parsed) || parsed.length < 5) {
+        localStorage.setItem('cag_offices', JSON.stringify(DEFAULT_OFFICES));
+        return DEFAULT_OFFICES;
+      }
       return parsed;
     } catch (e) {
       console.error('Error reading offices from localStorage:', e);
